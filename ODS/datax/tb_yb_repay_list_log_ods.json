@@ -1,0 +1,126 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"select 
+  `list_id`,
+  `merch_order_id`,
+  `yb_order_id`,
+  `repay_money`,
+  `identity_card`,
+  `customer_name`,
+  `phone_number`,
+  `bank_card`,
+  `business_id`,
+  `business_after_id`,
+  null as `remark`,
+  `update_user`,
+  `update_time`,
+  `merchant_account`,
+  null as `sms_confirm`,
+  null as `user_sign`,
+  null as `error_code`,
+  null as `error_msg`,
+  null as `code_sender`,
+  null as `validate_code`,
+  `repay_status`,
+  `Bind_Platform`,
+  `bool_part_repay`,
+  `bool_last_repay`,
+  `plan_total_repay_money`,
+  `channel_id`,
+  `settlement_type`,
+  `create_time`,
+  `create_user`
+,'tuandai_bm' dw_src_sys
+,'tb_yb_repay_list_log' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+from tb_yb_repay_list_log a 
+where Bind_Platform = 5
+and merch_order_id!=''
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"list_id",
+"merch_order_id",
+"yb_order_id",
+"repay_money",
+"identity_card",
+"customer_name",
+"phone_number",
+"bank_card",
+"business_id",
+"business_after_id",
+"remark",
+"update_user",
+"update_time",
+"merchant_account",
+"sms_confirm",
+"user_sign",
+"error_code",
+"error_msg",
+"code_sender",
+"validate_code",
+"repay_status",
+"Bind_Platform",
+"bool_part_repay",
+"bool_last_repay",
+"plan_total_repay_money",
+"channel_id",
+"settlement_type",
+"create_time",
+"create_user",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

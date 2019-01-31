@@ -1,0 +1,108 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT
+`business_id`,
+  `invoice_type`,
+  `invoice_category`,
+  `invoice_user`,
+  `invoice_date`,
+  `invoice_remark`,
+  `invoice_user_id`,
+  `overdue_ratio`,
+  `finance_withdraw_type`,
+  `finance_withdraw_log_id`,
+  `cooperation_withdraw_type`,
+  `cooperation_withdraw_log_id`,
+  `is_upload_attachment`,
+  `upload_attachment_path`,
+  `upload_attachment_date`,
+  `upload_attachment_user`,
+  `is_settle`,
+  `settle_status`,
+  `other_text`,
+  `remark`,
+  `overdue_month_ratio`,
+'tuandai_bm' dw_src_sys
+,'tb_business_extension' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM tuandai_bm.tb_business_extension
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"business_id",
+"invoice_type",
+"invoice_category",
+"invoice_user",
+"invoice_date",
+"invoice_remark",
+"invoice_user_id",
+"overdue_ratio",
+"finance_withdraw_type",
+"finance_withdraw_log_id",
+"cooperation_withdraw_type",
+"cooperation_withdraw_log_id",
+"is_upload_attachment",
+"upload_attachment_path",
+"upload_attachment_date",
+"upload_attachment_user",
+"is_settle",
+"settle_status",
+"other_text",
+"remark",
+"overdue_month_ratio",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

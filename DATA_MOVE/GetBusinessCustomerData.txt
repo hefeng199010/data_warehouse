@@ -1,0 +1,683 @@
+CREATE DEFINER = 'root'@'%'
+PROCEDURE tuandai_bm.GetBusinessCustomerData(IN business_id_ varchar(50), IN business_type_ varchar(50) CHARACTER SET utf8)
+BEGIN
+  /*定义变量*/
+  DECLARE customer_id varchar(50);
+  DECLARE business_id varchar(50);
+  DECLARE customer_name varchar(100) CHARACTER SET utf8;
+  DECLARE is_receipt_account int(11);
+  DECLARE fact_issue_money decimal(10, 2);
+  DECLARE can_issue_amount decimal(10, 2);
+  DECLARE customer_type varchar(50);
+  DECLARE identify_card varchar(50);
+  DECLARE phone_number varchar(50);
+  DECLARE ismainland_resident int(11);
+  DECLARE account_province varchar(50);
+  DECLARE account_city varchar(50);
+  DECLARE account_country varchar(50);
+  DECLARE account_address varchar(50);
+  DECLARE Stay_Year varchar(50);
+  DECLARE nation_id varchar(50);
+  DECLARE nation_name varchar(50);
+  DECLARE nativeplace varchar(50);
+  DECLARE sex varchar(50);
+  DECLARE birthday varchar(50);
+  DECLARE wed_status varchar(50);
+  DECLARE family_member varchar(50);
+  DECLARE children_number int(11);
+  DECLARE province varchar(50);
+  DECLARE city varchar(50);
+  DECLARE county varchar(50);
+  DECLARE house_address varchar(255);
+  DECLARE current_liabilities varchar(50);
+  DECLARE job_pay decimal(12, 2);
+  DECLARE education varchar(50);
+  DECLARE house_situation varchar(50);
+  DECLARE begin_stay_time datetime;
+  DECLARE current_phone_area_code varchar(50);
+  DECLARE current_phone_code varchar(50);
+  DECLARE house_type varchar(50);
+  DECLARE house_money decimal(10, 2);
+  DECLARE platform_situation varchar(500);
+  DECLARE contact_name varchar(50);
+  DECLARE is_company_bank_account int(11);
+  DECLARE is_merged_certificate int(11);
+  DECLARE legal_person_county varchar(50);
+  DECLARE unifiedCode varchar(255);
+  DECLARE business_licence varchar(255);
+  DECLARE company_type varchar(50);
+  DECLARE register_province varchar(50);
+  DECLARE register_city varchar(50);
+  DECLARE register_country varchar(50);
+  DECLARE register_address varchar(500);
+  DECLARE company_found date;
+  DECLARE actual_controller varchar(50);
+  DECLARE register_capital decimal(18, 2);
+  DECLARE company_legal_person varchar(50);
+  DECLARE legal_person_identity_card varchar(50);
+  DECLARE legal_person_phone varchar(50);
+  DECLARE legal_person_ismain_customer bit;
+  DECLARE legal_person_birthday varchar(50);
+  DECLARE legal_person_sex varchar(50);
+  DECLARE legal_person_province varchar(50);
+  DECLARE legal_person_city varchar(50);
+  DECLARE legal_person_house_address varchar(50);
+  DECLARE operate_range varchar(50);
+  DECLARE profession varchar(50);
+  DECLARE borrower_info varchar(50);
+  DECLARE court_execute varchar(50);
+  DECLARE create_time datetime;
+  DECLARE create_user varchar(50);
+  DECLARE update_user varchar(50);
+  DECLARE update_time datetime;
+
+  DECLARE car_business_id varchar(50);
+  DECLARE current_shi varchar(50);
+  DECLARE current_xian varchar(50);
+  DECLARE current_sheng varchar(50);
+  DECLARE user_guid varchar(50);
+  DECLARE NAME varchar(50);
+  DECLARE id_card_no varchar(50);
+  DECLARE id_card_address varchar(255);
+  DECLARE ismain_customer varchar(50);
+  DECLARE Current_Address varchar(255);
+  DECLARE legal_person_isMainland varchar(50);
+  DECLARE mobile_phone varchar(50);
+  DECLARE marriage varchar(50);
+  DECLARE para_value varchar(50) CHARACTER SET utf8;
+
+  /*从GetBankCardData中获取的值*/
+  DECLARE user_guid2 varchar(50);
+  DECLARE customer_name2 varchar(100) CHARACTER SET utf8;
+  DECLARE identify_card2 varchar(50);
+
+  DECLARE isCar varchar(50);
+  DECLARE isHouse varchar(50);
+  DECLARE flag varchar(50);
+  DECLARE countNum int(100) DEFAULT 0;
+  DECLARE _err int DEFAULT 0;
+  DECLARE par_exist int(10);
+  DECLARE Done int DEFAULT 0;
+  DECLARE rs CURSOR FOR
+  SELECT
+    t.customer_id,
+    t.actual_controller,
+    t.borrower_info,
+    t.car_business_id,
+    t.business_licence,
+    t.can_issue_amount,
+    t.children_number,
+    t.current_shi,
+    t.company_found,
+    t.company_legal_person,
+    t.company_type,
+    t.contact_name,
+    t.current_xian,
+    t.court_execute,
+    t.current_liabilities,
+    t.user_guid,
+    t.NAME,
+    t.customer_type,
+    t.education,
+    t.begin_stay_time,
+    t.current_phone_area_code,
+    t.current_phone_code,
+    CAST(t.house_money AS decimal(10, 2)) AS house_money,
+    t.house_type,
+    t.is_company_bank_account,
+    t.is_merged_certificate,
+    t.unifiedCode,
+    t.id_card_no,
+    IF((t.id_card_address = '' OR t.id_card_address IS NULL), 0, t.id_card_address) AS id_card_address,
+    t.ismain_customer,
+    t.is_receipt_account,
+    t.legal_person_birthday,
+    t.current_sheng,
+    t.Current_Address,
+    t.legal_person_identity_card,
+    t.legal_person_isMainland,
+    t.mobile_phone,
+    t.legal_person_sex,
+    t.nation_id,
+    t.nativeplace,
+    t.operate_range,
+    t.platform_situation,
+    t.register_address,
+    t.register_capital,
+    t.register_city,
+    t.register_country,
+    t.register_province,
+    t.sex,
+    t.marriage,
+    cast(t.profession as char(50)) AS profession,
+    t.Stay_Year
+  FROM tb_car_personal t
+  WHERE t.car_business_id = business_id_;
+
+  DECLARE fsd_customer_rs CURSOR FOR
+  SELECT
+    t.customer_id,
+    t.actual_controller,
+    t.borrower_info,
+    t.business_id,
+    t.business_licence,
+    t.can_issue_amount,
+    t.city,
+    t.company_found,
+    t.company_legal_person,
+    t.company_type,
+    t.contact_name,
+    t.province,
+    t.court_execute,
+    t.current_liabilities,
+    t.user_guid,
+    t.customer_name,
+    t.customer_type,
+    t.education,
+    t.fact_issue_money,
+    t.house_address,
+    t.begin_stay_time,
+    t.current_phone_area_code,
+    t.phone_number,
+    t.house_money,
+    t.house_type,
+    t.is_company_bank_account,
+    t.is_merged_certificate,
+    t.unifiedCode,
+    t.identify_card,
+    t.account_province,
+    t.account_city,
+    t.account_country,
+    t.account_address,
+    t.ismain_customer,
+    t.is_receipt_account,
+    t.legal_person_birthday,
+    t.legal_person_identity_card,
+    t.legal_person_isMainland,
+    t.legal_person_sex,
+    t.nation_id,
+    t.operate_range,
+    t.platform_situation,
+    t.profession,
+    t.register_address,
+    t.register_capital,
+    t.register_city,
+    t.register_country,
+    t.register_province,
+    t.sex,
+    t.Stay_Year,
+    t.wed_status
+  FROM tb_fsd_customer t
+  WHERE t.business_id = business_id_;
+
+  DECLARE common_customer_rs CURSOR FOR
+  SELECT
+    t.customer_id,
+    t.actual_controller,
+    t.borrower_info,
+    t.business_id,
+    t.business_licence,
+    t.can_issue_amount,
+    t.children_number,
+    t.city,
+    t.company_found,
+    t.company_legal_person,
+    t.company_type,
+    t.contact_name,
+    t.province,
+    t.court_execute,
+    t.current_liabilities,
+    t.user_guid,
+    t.customer_name,
+    t.customer_type,
+    t.education,
+    t.fact_issue_money,
+    t.house_address,
+    t.house_situation,
+    t.phone_number,
+    t.is_company_bank_account,
+    t.is_merged_certificate,
+    t.unifiedCode,
+    t.identify_card,
+    t.ismain_customer,
+    t.is_receipt_account,
+    t.legal_person_birthday,
+    t.legal_person_identity_card,
+    t.legal_person_ismain_customer,
+    t.legal_person_sex,
+    t.nation_id,
+    t.nativeplace,
+    t.operate_range,
+    t.platform_situation,
+    t.profession,
+    t.legal_person_house_address,
+    t.register_capital,
+    t.legal_person_city,
+    t.legal_person_county,
+    t.legal_person_province,
+    t.sex,
+    t.Stay_Year,
+    t.wed_status
+  FROM tb_common_customer t
+  WHERE t.business_id = business_id_;
+
+
+  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, NOT FOUND SET _err = 1;
+  DECLARE CONTINUE HANDLER FOR SQLSTATE '02000'
+  SET Done = 1;
+
+
+
+  SELECT
+    LOCATE('车', business_type_) INTO isCar;
+  SELECT
+    LOCATE('房', business_type_) INTO isHouse;
+  /*如果是车贷*/
+  IF business_type_ IS NOT NULL
+    AND business_type_ != ''
+    AND (isCar > 0
+    OR business_type_ = 'T500') THEN
+    IF _err = 1 THEN
+      SELECT
+        'tb_car_personal 表没有数据';
+    ELSE
+      OPEN rs;
+      FETCH NEXT FROM rs INTO customer_id, actual_controller, borrower_info, business_id, business_licence, can_issue_amount,
+      children_number, current_shi, company_found, company_legal_person, company_type, contact_name, current_xian, court_execute, current_liabilities, user_guid, customer_name, customer_type, education,
+      begin_stay_time, current_phone_area_code, current_phone_code, house_money, house_type, is_company_bank_account, is_merged_certificate, unifiedCode, id_card_no, id_card_address, ismain_customer,
+      is_receipt_account, legal_person_birthday, current_sheng, Current_Address, legal_person_identity_card, legal_person_isMainland, mobile_phone, legal_person_sex, nation_id, nativeplace,
+      operate_range, platform_situation, register_address, register_capital, register_city, register_country, register_province, sex, marriage, profession, Stay_Year;
+      REPEAT
+        SET birthday = NULL;
+        CALL tuandai_bm.GetBankCardData(business_id, customer_id, user_guid2, customer_name2, identify_card2);
+        SELECT
+          job_pay,
+          COUNT(1) countNum INTO job_pay
+        FROM tb_car_job tb
+        WHERE tb.car_business_id = business_id_
+        AND tb.customer_id = customer_id
+        GROUP BY job_pay;
+       SET city = current_shi;
+        SET county = current_xian;
+        SET create_time = CURRENT_TIME();
+        SET create_user = 'xd_sync';
+        IF user_guid IS NOT NULL
+          OR user_guid != '' THEN
+          SET customer_id = user_guid;
+        ELSE
+          SET customer_id = user_guid2;
+        END IF;
+
+        IF customer_name2 IS NOT NULL
+          AND customer_name2 != '' THEN
+          SET customer_name = customer_name2;
+        END IF;
+        
+        IF customer_type IS  NULL
+          OR customer_type = '' THEN
+          SET customer_name = NULL;
+        END IF;
+        
+        IF education IS NULL
+          OR education = '' THEN
+          SET education = NULL;
+        END IF;
+        
+        IF fact_issue_money IS  NULL
+          OR fact_issue_money = '' THEN
+          SET fact_issue_money = 0;
+        END IF;
+        
+        IF local_family_members IS  NULL
+          OR customer_name2 = '' THEN
+          SET family_member = NULL;
+        END IF;
+
+        SET house_situation = NULL;
+        IF current_phone_area_code IS  NULL
+          OR current_phone_area_code = '' THEN
+          SET current_phone_area_code = NULL;
+        END IF;
+
+        IF current_phone_code IS  NULL
+          OR current_phone_code = '' THEN
+          SET current_phone_code = NULL;
+        END IF;
+
+        IF house_type IS  NULL
+          OR house_type = '' THEN
+          SET house_type = NULL;
+        END IF;
+
+
+        SET house_money = CAST(house_money AS decimal(10, 2));
+        IF identify_card2 IS NOT NULL
+          AND identify_card2 != '' THEN
+          SET identify_card = identify_card2;
+        ELSE
+          IF IFNULL(is_company_bank_account, 0) = 1 THEN
+            IF IFNULL(is_merged_certificate, 0) = 1 THEN
+              SET identify_card = unifiedCode;
+            ELSE
+              SET identify_card = business_licence;
+            END IF;
+          ELSE
+            SET identify_card = id_card_no;
+          END IF;
+        END IF;
+
+        SET account_address = id_card_address;
+        SET ismainland_resident = IFNULL(ismain_customer, 0);
+        IF countNum = 0 THEN
+          SET job_pay = 0;
+        END IF;
+        IF legal_person_birthday IS NULL OR legal_person_birthday='' THEN 
+             SET legal_person_birthday=NULL;
+           ELSE 
+          SET legal_person_birthday = DATE_FORMAT(legal_person_birthday, '%Y-%c-%d');
+         END IF;
+        
+        SET legal_person_city = current_shi;
+        SET legal_person_county = current_sheng;
+        SET legal_person_house_address = Current_Address;
+        SET legal_person_ismain_customer = legal_person_isMainland;
+        SET legal_person_phone = mobile_phone;
+        SET legal_person_province = current_sheng;
+        SET phone_number = mobile_phone;
+       /*   IF profession != ''
+            AND profession IS NOT NULL THEN
+            SELECT
+              t.para_value INTO para_value
+            FROM tb_parameter t
+            WHERE t.PARA_TYPE = '行业类别'
+            AND t.para_name = '职业信息'
+            AND IFNULL(t.para_order, 0) = profession;
+            IF para_value='' OR para_value is null THEN
+             SET profession = '其他';
+            ELSE
+              SET profession =para_value;
+            end IF;
+          ELSE
+            SET profession = '其他';
+          END IF;*/
+        SET profession = '其他';
+        SET province = current_sheng;
+        
+        IF Stay_Year IS NULL OR Stay_Year='' THEN
+          SET Stay_Year = 0;
+           ELSE
+          SET Stay_Year=CAST(Stay_Year as SIGNED);
+        END IF;
+        SET update_time = CURRENT_TIME();
+        SET update_user = 'xd_sync';
+        SET wed_status = marriage;
+        /* 把数据插入数据库*/
+        INSERT INTO hongte_alms.tb_basic_business_customer (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time)
+          VALUES (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time);
+        COMMIT;
+        FETCH NEXT FROM rs INTO customer_id, actual_controller, borrower_info, car_business_id, business_licence, can_issue_amount,
+        children_number, current_shi, company_found, company_legal_person, company_type, contact_name, current_xian, court_execute, current_liabilities, user_guid, customer_name, customer_type, education,
+        begin_stay_time, current_phone_area_code, current_phone_code, house_money, house_type, is_company_bank_account, is_merged_certificate, unifiedCode, id_card_no, id_card_address, ismain_customer,
+        is_receipt_account, legal_person_birthday, current_sheng, Current_Address, legal_person_identity_card, legal_person_isMainland, mobile_phone, legal_person_sex, nation_id, nativeplace,
+        operate_range, platform_situation, register_address, register_capital, register_city, register_country, register_province, sex, marriage, profession, Stay_Year;
+      UNTIL Done END REPEAT;
+      CLOSE rs;
+    END IF;
+
+  /*如果是房贷*/
+  ELSEIF business_type_ IS NOT NULL
+    AND business_type_ != ''
+    AND (isHouse > 0
+    OR business_type_ = 'T500') THEN
+    IF _err = 1 THEN
+      SELECT
+        'tb_fsd_customer 表没有数据';
+    ELSE
+      OPEN fsd_customer_rs;
+      FETCH NEXT FROM fsd_customer_rs INTO customer_id, actual_controller, borrower_info, business_id, business_licence, can_issue_amount,
+      city, company_found, company_legal_person, company_type, contact_name, province, court_execute, current_liabilities, user_guid, customer_name, customer_type, education, fact_issue_money, house_address,
+      begin_stay_time, current_phone_area_code, phone_number, house_money, house_type, is_company_bank_account, is_merged_certificate, unifiedCode, identify_card,
+      account_province, account_city, account_country, account_address, ismain_customer, is_receipt_account, legal_person_birthday, legal_person_identity_card, legal_person_isMainland,
+      legal_person_sex, nation_id, operate_range, platform_situation, profession, register_address, register_capital, register_city, register_country, register_province, sex, Stay_Year, wed_status;
+      REPEAT
+        CALL tuandai_bm.GetBankCardData(business_id, customer_id, user_guid2, customer_name2, identify_card2);
+        SELECT
+          job_pay,
+          COUNT(1) countNum INTO job_pay
+        FROM tb_car_job tb
+        WHERE tb.car_business_id = business_id_
+        AND tb.customer_id = customer_id
+        GROUP BY job_pay;
+        SET birthday = NULL;
+        SET children_number = NULL;
+        SET county = province;
+        SET create_time = CURRENT_TIME();
+        SET create_user = 'xd_sync';
+        IF user_guid IS NOT NULL
+          OR user_guid != '' THEN
+          SET customer_id = user_guid;
+        ELSE
+          SET customer_id = user_guid2;
+        END IF;
+
+        IF customer_name2 IS NOT NULL
+          AND customer_name2 != '' THEN
+          SET customer_name = customer_name2;
+        END IF;
+
+        IF customer_type IS NULL
+          OR customer_type = '' THEN
+          SET customer_type = NULL;
+        END IF;
+
+
+        IF education IS NULL
+          OR education = '' THEN
+          SET education = NULL;
+        END IF;
+
+        IF fact_issue_money IS NULL
+          OR fact_issue_money = '' THEN
+          SET fact_issue_money = NULL;
+        END IF;
+
+        IF house_type IS NULL
+          OR house_type = '' THEN
+          SET house_type = NULL;
+        END IF;
+
+        IF borrower_info IS NULL
+          OR borrower_info = '' THEN
+          SET borrower_info = NULL;
+        END IF;
+
+        SET family_member = NULL;
+        SET house_situation = NULL;
+        SET current_phone_code = phone_number;
+        SET house_money = CAST(house_money AS decimal(10, 2));
+        IF identify_card2 IS NOT NULL
+          AND identify_card2 != '' THEN
+          SET identify_card = identify_card2;
+        ELSE
+          IF IFNULL(is_company_bank_account, 0) = 1 THEN
+            IF IFNULL(is_merged_certificate, 0) = 1 THEN
+              SET identify_card = unifiedCode;
+            ELSE
+              SET identify_card = business_licence;
+            END IF;
+          END IF;
+        END IF;
+        SET ismainland_resident = IFNULL(ismain_customer, 0);
+        IF countNum = 0 THEN
+          SET job_pay = 0;
+        END IF;
+
+        IF legal_person_birthday IS NULL
+          OR legal_person_birthday = '' THEN
+          SET legal_person_birthday = NULL;
+        ELSE
+          SET legal_person_birthday = IFNULL(DATE_FORMAT(legal_person_birthday, '%Y-%c-%d'), '');
+        END IF;
+
+
+
+        SET legal_person_city = city;
+        SET legal_person_county = province;
+        SET legal_person_house_address = house_address;
+        SET legal_person_ismain_customer = legal_person_isMainland;
+        SET legal_person_phone = phone_number;
+        SET legal_person_province = province;
+        IF profession != ''
+          AND profession IS NOT NULL THEN
+          SELECT
+            t.para_value INTO para_value
+          FROM tb_parameter t
+          WHERE t.PARA_TYPE = '行业类别'
+          AND t.para_name = '职业信息'
+          AND IFNULL(t.para_order, 0) = profession;
+          SET profession = IFNULL(para_value, '其他');
+        ELSE
+          SET profession = '其他';
+        END IF;
+         IF Stay_Year IS NULL OR Stay_Year='' THEN
+          SET Stay_Year = 0;
+           ELSE
+          SET Stay_Year=CAST(Stay_Year as SIGNED);
+        END IF;
+        SET update_time = CURRENT_TIME();
+        SET update_user = 'xd_sync';
+        SET wed_status = wed_status;
+        /*把数据插入数据库*/
+        INSERT INTO hongte_alms.tb_basic_business_customer (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time)
+          VALUES (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time);
+        COMMIT;
+        FETCH NEXT FROM fsd_customer_rs INTO customer_id, actual_controller, borrower_info, business_id, business_licence, can_issue_amount,
+        city, company_found, company_legal_person, company_type, contact_name, province, court_execute, current_liabilities, user_guid, customer_name, customer_type, education, fact_issue_money, house_address,
+        begin_stay_time, current_phone_area_code, phone_number, house_money, house_type, is_company_bank_account, is_merged_certificate, unifiedCode, identify_card,
+        account_province, account_city, account_country, account_address, ismain_customer, is_receipt_account, legal_person_birthday, legal_person_identity_card, legal_person_isMainland,
+        legal_person_sex, nation_id, operate_range, platform_situation, profession, register_address, register_capital, register_city, register_country, register_province, sex, Stay_Year, wed_status;
+      UNTIL Done END REPEAT;
+      CLOSE rs;
+    END IF;
+  /******************其他else****************/
+  ELSE
+    IF _err = 1 THEN
+      SELECT
+        'tb_common_customer 表没有数据';
+    ELSE
+      REPEAT
+        OPEN common_customer_rs;
+        FETCH NEXT FROM common_customer_rs INTO customer_id, actual_controller, borrower_info, business_id, business_licence, can_issue_amount, children_number,
+        city, company_found, company_legal_person, company_type, contact_name, province, court_execute, current_liabilities, user_guid, customer_name, customer_type, education, fact_issue_money, house_address,
+        house_situation, phone_number, is_company_bank_account, is_merged_certificate, unifiedCode, identify_card,
+        ismain_customer, is_receipt_account, legal_person_birthday, legal_person_identity_card, legal_person_ismain_customer,
+        legal_person_sex, nation_id, nativeplace, operate_range, platform_situation, profession, legal_person_house_address, register_capital, legal_person_city, legal_person_county, legal_person_province, sex, Stay_Year
+        , wed_status;
+        CALL tuandai_bm.GetBankCardData(business_id, customer_id, user_guid2, customer_name2, identify_card2);
+        IF user_guid2 IS NULL
+          OR user_guid2 = '' THEN
+          SET user_guid2 = NULL;
+        END IF;
+        IF customer_name2 IS NULL
+          OR customer_name2 = '' THEN
+          SET customer_name2 = NULL;
+        END IF;
+        IF identify_card2 IS NULL
+          OR identify_card2 = '' THEN
+          SET identify_card2 = NULL;
+        END IF;
+        SELECT
+          job_pay,
+          COUNT(1) countNum INTO job_pay
+        FROM tb_car_job tb
+        WHERE tb.car_business_id = business_id_
+        AND tb.customer_id = customer_id
+        GROUP BY job_pay;
+        SET birthday = NULL;
+        SET children_number = NULL;
+        SET county = province;
+        SET create_time = CURRENT_TIME();
+        SET create_user = 'xd_sync';
+        IF user_guid IS NOT NULL
+          OR user_guid != '' THEN
+          SET customer_id = user_guid;
+        ELSE
+          SET customer_id = user_guid2;
+        END IF;
+
+        IF customer_name2 IS NOT NULL
+          AND customer_name2 != '' THEN
+          SET customer_name = customer_name2;
+        END IF;
+        SET family_member = NULL;
+        SET house_situation = NULL;
+        SET current_phone_code = phone_number;
+        SET house_money = CAST(house_money AS decimal(10, 2));
+        IF identify_card2 IS NOT NULL
+          AND identify_card2 != '' THEN
+          SET identify_card = identify_card2;
+        ELSE
+          IF IFNULL(is_company_bank_account, 0) = 1 THEN
+            IF IFNULL(is_merged_certificate, 0) = 1 THEN
+              SET identify_card = unifiedCode;
+            ELSE
+              SET identify_card = business_licence;
+            END IF;
+          END IF;
+        END IF;
+        SET ismainland_resident = IFNULL(ismain_customer, 0);
+        IF countNum = 0 THEN
+          SET job_pay = 0;
+        END IF;
+        IF legal_person_birthday IS NULL
+          OR legal_person_birthday = '' THEN
+          SET legal_person_birthday = NULL;
+        ELSE
+          SET legal_person_birthday = IFNULL(DATE_FORMAT(legal_person_birthday, '%Y-%c-%d'), '');
+        END IF;
+        SET legal_person_city = city;
+        SET legal_person_county = province;
+        SET legal_person_house_address = house_address;
+        SET legal_person_ismain_customer = legal_person_isMainland;
+        SET legal_person_phone = phone_number;
+        SET legal_person_province = province;
+        IF profession != ''
+          AND profession IS NOT NULL THEN
+          SELECT
+            t.para_value INTO para_value
+          FROM tb_parameter t
+          WHERE t.PARA_TYPE = '行业类别'
+          AND t.para_name = '职业信息'
+          AND IFNULL(t.para_order, 0) = profession;
+          SET profession = IFNULL(para_value, '其他');
+        ELSE
+          SET profession = '其他';
+        END IF;
+
+        
+        IF Stay_Year IS NULL OR Stay_Year='' THEN
+          SET Stay_Year = 0;
+           ELSE
+          SET Stay_Year=CAST(Stay_Year as SIGNED);
+        END IF;
+        SET update_time = CURRENT_TIME();
+        SET update_user = 'xd_sync';
+        SET wed_status = marriage;
+        /*把数据插入数据库*/
+        INSERT INTO hongte_alms.tb_basic_business_customer (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time)
+          VALUES (customer_id, business_id, customer_name, is_receipt_account, fact_issue_money, can_issue_amount, customer_type, identify_card, phone_number, ismainland_resident, account_province, account_city, account_country, account_address, Stay_Year, nation_id, nation_name, nativeplace, sex, birthday, wed_status, family_member, children_number, province, city, county, house_address, current_liabilities, job_pay, education, house_situation, begin_stay_time, current_phone_area_code, current_phone_code, house_type, house_money, platform_situation, contact_name, is_company_bank_account, is_merged_certificate, legal_person_county, unifiedCode, business_licence, company_type, register_province, register_city, register_country, register_address, company_found, actual_controller, register_capital, company_legal_person, legal_person_identity_card, legal_person_phone, legal_person_ismain_customer, legal_person_birthday, legal_person_sex, legal_person_province, legal_person_city, legal_person_house_address, operate_range, profession, borrower_info, court_execute, create_time, create_user, update_user, update_time);
+        COMMIT;
+        FETCH NEXT FROM common_customer_rs INTO customer_id, actual_controller, borrower_info, business_id, business_licence, can_issue_amount, children_number,
+        city, company_found, company_legal_person, company_type, contact_name, province, court_execute, current_liabilities, user_guid, customer_name, customer_type, education, fact_issue_money, house_address,
+        house_situation, phone_number, is_company_bank_account, is_merged_certificate, unifiedCode, identify_card,
+        ismain_customer, is_receipt_account, legal_person_birthday, legal_person_identity_card, legal_person_isMainland,
+        legal_person_sex, nation_id, nativeplace, operate_range, platform_situation, profession, register_address, register_capital, register_city, register_country, register_province, sex, Stay_Year,
+        wed_status;
+      UNTIL Done END REPEAT;
+      CLOSE rs;
+    END IF;
+
+  END IF;
+
+
+END

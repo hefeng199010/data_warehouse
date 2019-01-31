@@ -1,0 +1,147 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT business_id
+,input_time
+,customer_name
+,operator_id
+,business_type
+,original_id
+,branch_id
+,wf_id
+,wf_node_id
+,process_id
+,identify_card
+,business_out_type
+,approver_id
+,repayment_type_id
+,borrow_money
+,borrow_limit
+,loan_rate
+,flow_branch_id
+,business_dept
+,flow_business_type
+,back_process_id
+,edit_procss_id
+,customer_type
+,after_load_process_id
+,after_wf_id
+,after_wf_node_id
+,business_type_detail
+,issue_type
+,customer_list
+,source_type
+,source_business_id
+,issue_split_type
+,is_old
+,is_tuandai_repay
+,'tuandai_bm' dw_src_sys
+,'tb_business' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d 00:00:00') part_dt
+,is_can_cunliang
+,customer_class
+,customer_detail_class
+,platform_id
+,multi_platform
+,repayment_system
+,late_fee_scheme
+FROM tuandai_bm.tb_business
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"business_id",
+"input_time",
+"customer_name",
+"operator_id",
+"business_type",
+"original_id",
+"branch_id",
+"wf_id",
+"wf_node_id",
+"process_id",
+"identify_card",
+"business_out_type",
+"approver_id",
+"repayment_type_id",
+"borrow_money",
+"borrow_limit",
+"loan_rate",
+"flow_branch_id",
+"business_dept",
+"flow_business_type",
+"back_process_id",
+"edit_procss_id",
+"customer_type",
+"after_load_process_id",
+"after_wf_id",
+"after_wf_node_id",
+"business_type_detail",
+"issue_type",
+"customer_list",
+"source_type",
+"source_business_id",
+"issue_split_type",
+"is_old",
+"is_tuandai_repay",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt",
+"is_can_cunliang",
+"customer_class",
+"customer_detail_class",
+"platform_id",
+"multi_platform",
+"repayment_system",
+"late_fee_scheme"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

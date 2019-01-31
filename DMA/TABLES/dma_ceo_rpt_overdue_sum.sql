@@ -1,0 +1,133 @@
+-- dma_ceo_rpt_overdue_sum
+DROP  TABLE IF EXISTS DMA_CEO_RPT_DATA.dma_ceo_rpt_overdue_sum;
+CREATE TABLE DMA_CEO_RPT_DATA.dma_ceo_rpt_overdue_sum
+(
+stat_dt       VARCHAR(10)         COMMENT       '跑批日期',
+data_dt       VARCHAR(10)         COMMENT       '数据日期',
+area_nm       VARCHAR(100)         COMMENT       '片区',
+branch_nm       VARCHAR(100)         COMMENT       '分公司',
+business_type_nm       VARCHAR(50)         COMMENT       '业务类型',
+no_settle_cnt       INT(7)         COMMENT       '未结清单数',
+borrow_amt       DECIMAL(15,2)         COMMENT       '借款金额',
+left_principa_amt       DECIMAL(15,2)         COMMENT       '剩余本金',
+overdue_cnt       INT(7)         COMMENT       '总逾期户数',
+ovd_borrow_amt       DECIMAL(15,2)         COMMENT       '总逾期借款金额',
+ovd_left_prin_amt       DECIMAL(15,2)         COMMENT       '总逾期剩余本金',
+m1_cnt       INT(7)         COMMENT       'M1单数',
+m1_borrow_amt       DECIMAL(15,2)         COMMENT       'M1借款金额',
+m1_left_prin_amt       DECIMAL(15,2)         COMMENT       'M1剩余本金',
+m1_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M1逾期本金',
+m1_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M1逾期利息',
+m1_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M1逾期滞纳金',
+m1_ode_other_amt       DECIMAL(15,2)         COMMENT       'M1逾期其他费用',
+m1_ode_amt       DECIMAL(15,2)         COMMENT       'M1逾期总额',
+m2_cnt       INT(7)         COMMENT       'M2单数',
+m2_borrow_amt       DECIMAL(15,2)         COMMENT       'M2借款金额',
+m2_left_prin_amt       DECIMAL(15,2)         COMMENT       'M2剩余本金',
+m2_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M2逾期本金',
+m2_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M2逾期利息',
+m2_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M2逾期滞纳金',
+m2_ode_other_amt       DECIMAL(15,2)         COMMENT       'M2逾期其他费用',
+m2_ode_amt       DECIMAL(15,2)         COMMENT       'M2逾期总额',
+m3_cnt       INT(7)         COMMENT       'M3单数',
+m3_borrow_amt       DECIMAL(15,2)         COMMENT       'M3借款金额',
+m3_left_prin_amt       DECIMAL(15,2)         COMMENT       'M3剩余本金',
+m3_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M3逾期本金',
+m3_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M3逾期利息',
+m3_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M3逾期滞纳金',
+m3_ode_other_amt       DECIMAL(15,2)         COMMENT       'M3逾期其他费用',
+m3_ode_amt       DECIMAL(15,2)         COMMENT       'M3逾期总额',
+m3_plus_cnt       INT(7)         COMMENT       'M3+单数',
+m3_plus_borrow_amt       DECIMAL(15,2)         COMMENT       'M3+借款金额',
+m3_plus_left_prin_amt       DECIMAL(15,2)         COMMENT       'M3+剩余本金',
+m3_plus_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M3+逾期本金',
+m3_plus_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M3+逾期利息',
+m3_plus_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M3+逾期滞纳金',
+m3_plus_ode_other_amt       DECIMAL(15,2)         COMMENT       'M3+逾期其他费用',
+m3_plus_ode_amt       DECIMAL(15,2)         COMMENT       'M3+逾期总额',
+dw_src_sys       VARCHAR(50)         COMMENT       '来源系统',
+dw_src_tbl       VARCHAR(500)         COMMENT       '来源表',
+dw_ins_tm       DATETIME         COMMENT       '插入时间',
+dw_upd_tm       DATETIME         COMMENT       '更新时间',
+dw_ins_usr       VARCHAR(50)         COMMENT       '插入用户',
+dw_upd_usr       VARCHAR(50)         COMMENT       '更新用户',
+INDEX `idx_dma_ceo_rpt_overdue_sum_data_dt` (`data_dt`)
+
+)
+COMMENT='ceo看板贷后逾期汇总表'
+COLLATE='utf8_general_ci';
+
+
+-- dma_ceo_rpt_overdue_sum
+DROP  TABLE IF EXISTS DMA_CEO_RPT_DATA.dma_ceo_rpt_overdue_sum_his;
+CREATE TABLE DMA_CEO_RPT_DATA.dma_ceo_rpt_overdue_sum_his
+(
+stat_dt       VARCHAR(10)         COMMENT       '跑批日期',
+data_dt       VARCHAR(10)         COMMENT       '数据日期',
+area_nm       VARCHAR(100)         COMMENT       '片区',
+branch_nm       VARCHAR(100)         COMMENT       '分公司',
+business_type_nm       VARCHAR(50)         COMMENT       '业务类型',
+no_settle_cnt       INT(7)         COMMENT       '未结清单数',
+borrow_amt       DECIMAL(15,2)         COMMENT       '借款金额',
+left_principa_amt       DECIMAL(15,2)         COMMENT       '剩余本金',
+overdue_cnt       INT(7)         COMMENT       '总逾期户数',
+ovd_borrow_amt       DECIMAL(15,2)         COMMENT       '总逾期借款金额',
+ovd_left_prin_amt       DECIMAL(15,2)         COMMENT       '总逾期剩余本金',
+m1_cnt       INT(7)         COMMENT       'M1单数',
+m1_borrow_amt       DECIMAL(15,2)         COMMENT       'M1借款金额',
+m1_left_prin_amt       DECIMAL(15,2)         COMMENT       'M1剩余本金',
+m1_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M1逾期本金',
+m1_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M1逾期利息',
+m1_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M1逾期滞纳金',
+m1_ode_other_amt       DECIMAL(15,2)         COMMENT       'M1逾期其他费用',
+m1_ode_amt       DECIMAL(15,2)         COMMENT       'M1逾期总额',
+m2_cnt       INT(7)         COMMENT       'M2单数',
+m2_borrow_amt       DECIMAL(15,2)         COMMENT       'M2借款金额',
+m2_left_prin_amt       DECIMAL(15,2)         COMMENT       'M2剩余本金',
+m2_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M2逾期本金',
+m2_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M2逾期利息',
+m2_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M2逾期滞纳金',
+m2_ode_other_amt       DECIMAL(15,2)         COMMENT       'M2逾期其他费用',
+m2_ode_amt       DECIMAL(15,2)         COMMENT       'M2逾期总额',
+m3_cnt       INT(7)         COMMENT       'M3单数',
+m3_borrow_amt       DECIMAL(15,2)         COMMENT       'M3借款金额',
+m3_left_prin_amt       DECIMAL(15,2)         COMMENT       'M3剩余本金',
+m3_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M3逾期本金',
+m3_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M3逾期利息',
+m3_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M3逾期滞纳金',
+m3_ode_other_amt       DECIMAL(15,2)         COMMENT       'M3逾期其他费用',
+m3_ode_amt       DECIMAL(15,2)         COMMENT       'M3逾期总额',
+m3_plus_cnt       INT(7)         COMMENT       'M3+单数',
+m3_plus_borrow_amt       DECIMAL(15,2)         COMMENT       'M3+借款金额',
+m3_plus_left_prin_amt       DECIMAL(15,2)         COMMENT       'M3+剩余本金',
+m3_plus_ode_prpa_amt       DECIMAL(15,2)         COMMENT       'M3+逾期本金',
+m3_plus_ode_acal_amt       DECIMAL(15,2)         COMMENT       'M3+逾期利息',
+m3_plus_ode_breach_amt       DECIMAL(15,2)         COMMENT       'M3+逾期滞纳金',
+m3_plus_ode_other_amt       DECIMAL(15,2)         COMMENT       'M3+逾期其他费用',
+m3_plus_ode_amt       DECIMAL(15,2)         COMMENT       'M3+逾期总额',
+dw_src_sys       VARCHAR(50)         COMMENT       '来源系统',
+dw_src_tbl       VARCHAR(500)         COMMENT       '来源表',
+dw_ins_tm       DATETIME         COMMENT       '插入时间',
+dw_upd_tm       DATETIME         COMMENT       '更新时间',
+dw_ins_usr       VARCHAR(50)         COMMENT       '插入用户',
+dw_upd_usr       VARCHAR(50)         COMMENT       '更新用户',
+`part_dt` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '分区时间',
+INDEX `idx_dma_ceo_rpt_overdue_sum_his_data_dt` (`data_dt`),
+INDEX `idx_dma_ceo_rpt_overdue_sum_his_part_dt` (`part_dt`)
+
+)
+COMMENT='ceo看板贷后逾期汇总his表'
+COLLATE='utf8_general_ci'
+/*!50100 PARTITION BY RANGE (TO_DAYS(part_dt))
+(
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_01 VALUES LESS THAN (737181) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_02 VALUES LESS THAN (737182) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_03 VALUES LESS THAN (737183) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_04 VALUES LESS THAN (737184) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_05 VALUES LESS THAN (737185) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_06 VALUES LESS THAN (737186) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_07 VALUES LESS THAN (737187) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_08 VALUES LESS THAN (737188) ENGINE = InnoDB,
+ PARTITION dma_ceo_rpt_overdue_sum_his_2018_05_09 VALUES LESS THAN (737189) ENGINE = InnoDB)  */;
+ 
+ 

@@ -1,0 +1,212 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT
+  IssueId
+, NickName
+, TelNo
+, Email
+, IdentityCard
+, RealName
+, BankAccountNo
+, BankType
+, BankProvice
+, BankCity
+, OpenBankName
+, null as Title
+, PeriodMonth
+, RepaymentType
+, Amount
+, LowerUnit
+, BranchCompanyId
+, null as ControlDesc
+, null as ImageUrl
+, TitleImageId
+, null as Remark
+, CreateUser
+, CreateTime
+, UpdateUser
+, UpdateTime
+, Status
+, ProjectType
+, null as ResultContent
+, EnterpriseUserId
+, AviCreditGrantingAmount
+, InterestRate
+, OverRate
+, Sex
+, CredTypeId
+, Birthday
+, null as RiskAssessment
+, UserId
+, UserTypeId
+, Marriage
+, null as Address
+, IsHaveHouse
+, IsHaveCar
+, TuandaiRate
+, GuaranteeRate
+, SubCompanyRate
+, TuandaiAmount
+, GuaranteeAmount
+, SubCompanyCharge
+, DepositAmount
+, FreedAmount
+, BorrowAmount
+, CreditorId
+, IsBailorWithdraw
+, PayType
+, AgencyId
+, AgencyRate
+, AgencyAmount
+, BusinessID
+, BusinessRate
+, BusinessAmount
+, FreedRate
+, BorrowerRate
+, ProjectFrom
+, null as FundUse
+, null as RepaymentAssure
+, null as Ext
+, Month_Principal_Amount
+, queryProjectStatus
+, queryStatusDesc
+, queryCastedAmount
+, queryAuditDate
+, queryResultContent
+, queryFullsuccessDate
+,'tuandai_bm' dw_src_sys
+,'tb_issue' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM tb_issue
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"IssueId",
+"NickName",
+"TelNo",
+"Email",
+"IdentityCard",
+"RealName",
+"BankAccountNo",
+"BankType",
+"BankProvice",
+"BankCity",
+"OpenBankName",
+"Title",
+"PeriodMonth",
+"RepaymentType",
+"Amount",
+"LowerUnit",
+"BranchCompanyId",
+"ControlDesc",
+"ImageUrl",
+"TitleImageId",
+"Remark",
+"CreateUser",
+"CreateTime",
+"UpdateUser",
+"UpdateTime",
+"Status",
+"ProjectType",
+"ResultContent",
+"EnterpriseUserId",
+"AviCreditGrantingAmount",
+"InterestRate",
+"OverRate",
+"Sex",
+"CredTypeId",
+"Birthday",
+"RiskAssessment",
+"UserId",
+"UserTypeId",
+"Marriage",
+"Address",
+"IsHaveHouse",
+"IsHaveCar",
+"TuandaiRate",
+"GuaranteeRate",
+"SubCompanyRate",
+"TuandaiAmount",
+"GuaranteeAmount",
+"SubCompanyCharge",
+"DepositAmount",
+"FreedAmount",
+"BorrowAmount",
+"CreditorId",
+"IsBailorWithdraw",
+"PayType",
+"AgencyId",
+"AgencyRate",
+"AgencyAmount",
+"BusinessID",
+"BusinessRate",
+"BusinessAmount",
+"FreedRate",
+"BorrowerRate",
+"ProjectFrom",
+"FundUse",
+"RepaymentAssure",
+"Ext",
+"Month_Principal_Amount",
+"queryProjectStatus",
+"queryStatusDesc",
+"queryCastedAmount",
+"queryAuditDate",
+"queryResultContent",
+"queryFullsuccessDate",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

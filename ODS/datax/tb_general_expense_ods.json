@@ -1,0 +1,142 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT
+id
+,statistical_time
+,company_code
+,campany_name
+,major_type
+,sub_type
+,rent_cost
+,depreciation_amortization_fee
+,long_term_apportioned_cost
+,office_expenses
+,travel_expenses
+,communication_fee
+,advertising_fee
+,vehicle_cost
+,hospitality
+,service_charge
+,conference_fee
+,low_value_consumables
+,commission_charge
+,other_expenses
+,artificial_cost_aggregate
+,wages
+,performance_promotion_and_bonus
+,social_security
+,accumulation_fund
+,welfare_funds
+,recruitment_costs
+,training_fee
+,other
+,value_added_tax
+,additional_tax
+,corporate_income_tax
+,general_expense_total
+,create_user
+,create_time
+,update_user
+,update_time
+,STATUS
+,'ht_cams' dw_src_sys
+,'tb_general_expense' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'caihl' dw_ins_usr
+,'caihl' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM ht_cams.tb_general_expense
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"id",
+"statistical_time",
+"company_code",
+"campany_name",
+"major_type",
+"sub_type",
+"rent_cost",
+"depreciation_amortization_fee",
+"long_term_apportioned_cost",
+"office_expenses",
+"travel_expenses",
+"communication_fee",
+"advertising_fee",
+"vehicle_cost",
+"hospitality",
+"service_charge",
+"conference_fee",
+"low_value_consumables",
+"commission_charge",
+"other_expenses",
+"artificial_cost_aggregate",
+"wages",
+"performance_promotion_and_bonus",
+"social_security",
+"accumulation_fund",
+"welfare_funds",
+"recruitment_costs",
+"training_fee",
+"other",
+"value_added_tax",
+"additional_tax",
+"corporate_income_tax",
+"general_expense_total",
+"create_user",
+"create_time",
+"update_user",
+"update_time",
+"STATUS",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

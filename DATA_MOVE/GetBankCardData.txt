@@ -1,0 +1,215 @@
+CREATE DEFINER = 'root'@'%'
+PROCEDURE tuandai_bm.GetBankCardData(IN business_id varchar(50), IN customer_id varchar(50), OUT user_guid varchar(50), OUT customer_name varchar(50) CHARACTER SET utf8, OUT identify_card varchar(50))
+BEGIN
+  DECLARE business_type2 varchar(50) CHARACTER SET utf8;
+  DECLARE flag varchar(50);
+  DECLARE customer_type varchar(50) CHARACTER SET utf8; /*车贷的*/
+  DECLARE isCar varchar(50);
+  DECLARE isHouse varchar(50);
+  DECLARE isCompany varchar(50);
+  DECLARE is_company_bank_account varchar(50);
+  DECLARE is_merged_certificate varchar(50);
+  DECLARE unifiedCode varchar(50);
+  DECLARE business_licence varchar(50);
+  DECLARE id_card_no varchar(50);
+  DECLARE id_card varchar(50);
+  DECLARE countNumber int(50) DEFAULT 0;
+  SELECT
+    tb.business_type INTO business_type2
+  FROM tb_business tb
+  WHERE tb.business_id = business_id
+  AND tb.business_type IS NOT NULL
+  AND tb.business_type != '';
+
+  SELECT
+    COUNT(1) INTO countNumber
+  FROM tb_business tb
+  WHERE tb.business_id = business_id;
+  IF countNumber <= 0 THEN
+    SET user_guid = '';
+    SET customer_name = '';
+    SET identify_card = '';
+  END IF;
+
+  -- 如果是车贷 model_tb_business.business_type.IndexOf('车') > -1 || model_tb_business.business_type == "T500"
+  SELECT
+    LOCATE('车', business_type2) INTO isCar;
+  SELECT
+    LOCATE('房', business_type2) INTO isHouse;
+  /*车贷*/
+  IF isCar > 0
+    OR business_type2 = 'T500' THEN
+    SELECT
+      COUNT(1) INTO countNumber
+    FROM tb_car_personal tcp
+    WHERE tcp.customer_id = customer_id;
+    IF countNumber > 0 THEN
+      SELECT
+        tcp.customer_type,
+        tcp.is_company_bank_account,
+        tcp.is_merged_certificate,
+        tcp.unifiedCode,
+        tcp.business_licence,
+        tcp.id_card_no INTO customer_type, is_company_bank_account, is_merged_certificate, unifiedCode, business_licence, id_card_no
+      FROM tb_car_personal tcp
+        JOIN tb_business tb
+          ON tcp.car_business_id = tb.business_id
+      WHERE tcp.customer_id = customer_id
+      ORDER BY tb.input_time DESC LIMIT 1;
+      SELECT
+        LOCATE('企业', customer_type) INTO isCompany;
+      IF isCompany > 0
+        OR IFNULL(is_company_bank_account, 0) = 1 THEN
+        IF IFNULL(is_merged_certificate, 0) = 1 THEN
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = unifiedCode;
+        ELSE
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = business_licence;
+        END IF;
+
+      ELSE
+        SELECT
+          a.user_guid,
+          a.customer_name,
+          a.identify_card INTO user_guid, customer_name, identify_card
+        FROM tb_yb_bank_card a
+        WHERE a.identify_card = id_card_no;
+      END IF;
+    END IF;
+  /*房贷*/
+  ELSEIF isHouse > 0
+    OR business_type2 = 'T600' THEN
+    SELECT
+      COUNT(1) INTO countNumber
+    FROM tb_fsd_customer tcp
+    WHERE tcp.customer_id = customer_id;
+    IF countNumber > 0 THEN
+      SELECT
+        tcp.customer_type,
+        tcp.is_company_bank_account,
+        tcp.is_merged_certificate,
+        tcp.unifiedCode,
+        tcp.business_licence,
+        tcp.identify_card INTO customer_type, is_company_bank_account, is_merged_certificate, unifiedCode, business_licence, identify_card
+      FROM tb_fsd_customer tcp
+        JOIN tb_business tb
+          ON tcp.business_id = tb.business_id
+      WHERE tcp.customer_id = customer_id
+      ORDER BY tb.input_time DESC LIMIT 1;
+      SELECT
+        LOCATE('企业', customer_type) INTO isCompany;
+      IF isCompany > 0
+        OR IFNULL(is_company_bank_account, 0) = 1 THEN
+        IF IFNULL(is_merged_certificate, 0) = 1 THEN
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = unifiedCode;
+        ELSE
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = business_licence;
+        END IF;
+
+      ELSE
+        SELECT
+          a.user_guid,
+          a.customer_name,
+          a.identify_card INTO user_guid, customer_name, identify_card
+        FROM tb_yb_bank_card a
+        WHERE a.identify_card = identify_card;
+      END IF;
+    END IF;
+  /*添加通用客户信息表情况*/
+  ELSEIF business_type2 = "T270"
+    OR business_type2 = "T260"
+    OR business_type2 = "T290"
+    OR business_type2 = "T140" THEN
+    SELECT
+      COUNT(1) INTO countNumber
+    FROM tb_common_customer tcp
+    WHERE tcp.customer_id = customer_id;
+    IF countNumber > 0 THEN
+      SELECT
+        tcp.customer_type,
+        tcp.is_company_bank_account,
+        tcp.is_merged_certificate,
+        tcp.unifiedCode,
+        tcp.business_licence,
+        tcp.identify_card INTO customer_type, is_company_bank_account, is_merged_certificate, unifiedCode, business_licence, identify_card
+      FROM tb_common_customer tcp
+        JOIN tb_business tb
+          ON tcp.business_id = tb.business_id
+      WHERE tcp.customer_id = customer_id
+      ORDER BY tb.input_time DESC LIMIT 1;
+      SELECT
+        LOCATE('企业', customer_type) INTO isCompany;
+      IF isCompany > 0
+        OR IFNULL(is_company_bank_account, 0) = 1 THEN
+        IF IFNULL(is_merged_certificate, 0) = 1 THEN
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = unifiedCode;
+        ELSE
+          SELECT
+            a.user_guid,
+            a.customer_name,
+            a.identify_card INTO user_guid, customer_name, identify_card
+          FROM tb_yb_bank_card a
+          WHERE a.identify_card = business_licence;
+        END IF;
+
+      ELSE
+        SELECT
+          a.user_guid,
+          a.customer_name,
+          a.identify_card INTO user_guid, customer_name, identify_card
+        FROM tb_yb_bank_card a
+        WHERE a.identify_card = id_card_no;
+      END IF;
+    END IF;
+  /* 添加通用客户信息表情况*/
+  ELSEIF business_type2 = "T145" THEN
+    SELECT
+      COUNT(1) INTO countNumber
+    FROM tb_wecash_basic_info twbc
+    WHERE twbc.business_id = business_id;
+    IF countNumber > 0 THEN
+      SELECT
+        twbc.id_card INTO id_card
+      FROM tb_wecash_basic_info twbc
+        JOIN tb_business tb
+          ON twbc.business_id = tb.business_id
+      WHERE twbc.business_id = business_id
+      ORDER BY tb.input_time DESC LIMIT 1;
+      SELECT
+        a.user_guid,
+        a.customer_name,
+        a.identify_card INTO user_guid, customer_name, identify_card
+      FROM tb_yb_bank_card a
+      WHERE a.identify_card = id_card;
+    END IF;
+  ELSE
+    SET user_guid = '';
+    SET customer_name = '';
+    SET identify_card = '';
+  END IF;
+
+END

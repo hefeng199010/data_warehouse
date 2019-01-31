@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job>
+  <name>kjb_dma_ceo_rpt_fin_revenue_fc</name>
+  <description/>
+  <extended_description>ceo看板业务明细表</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/</directory>
+  <created_user>-</created_user>
+  <created_date>2018/01/26 14:01:05.270</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/01/31 11:51:34.108</modified_date>
+  <parameters>
+    <parameter>
+      <name>${p_day}</name>
+      <default_value>2018030719</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>${p_duty_nm}</name>
+      <default_value>dma_ceo_rpt_fin_revenue_fc</default_value>
+      <description/>
+    </parameter>
+  </parameters>
+  <connection>
+    <name>DMA_SAL_ACHV_DATA</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_DMA_SAL_ACHVNAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>public_data</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_PUBLIC_NAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>64</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1264</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 100</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('11',
+   '${p_duty_nm}',
+	'1',
+   '>>>>>>>>>> JOB START >>>>>>>>>>',
+   '100',
+   '任务开始！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>128</xloc>
+      <yloc>304</yloc>
+    </entry>
+    <entry>
+      <name>JavaScript_Return</name>
+      <description/>
+      <type>EVAL</type>
+      <script>1 > 2 </script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 300</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'delete_data',
+   '100',
+   '删除数据！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>288</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 400</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   '>>>>>>>>>> JOB END >>>>>>>>>>',
+   '100',
+   '插入数据库',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1168</xloc>
+      <yloc>304</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 210</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'delete_data',
+   '100',
+   '删除数据异常',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 310</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'ods_insert',
+   '100',
+   '插入数据异常',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>768</xloc>
+      <yloc>608</yloc>
+    </entry>
+    <entry>
+      <name>ktr_set_date</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_set_date.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>304</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 200</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'ktr_set_date',
+   '200',
+   '定义日期变量！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>304</yloc>
+    </entry>
+    <entry>
+      <name>Set variables</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>i_while_count</variable_name>
+          <variable_value>0</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>ktr_duty_check</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_duty_check.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>416</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>check_value</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>pt_returnvalue</fieldname>
+      <variablename>pt_returnvalue</variablename>
+      <fieldtype>number</fieldtype>
+      <mask/>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 210 2 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>
+insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'check_value',
+   '100',
+   CONCAT('${pt_returnvalue}','源表没有生成,需等待2分钟'),
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>Java_cycle</name>
+      <description/>
+      <type>EVAL</type>
+      <script>var attempt = parent_job.getVariable("i_while_count");
+
+if(attempt &lt; 10 )
+{
+   attempt++;
+   parent_job.setVariable("i_while_count", attempt); 
+
+   true;
+
+}
+else
+{
+   
+
+   false;
+}
+</script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>Wait for</name>
+      <description/>
+      <type>DELAY</type>
+      <maximumTimeout>2</maximumTimeout>
+      <scaletime>1</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>416</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>ktr_duty_insert</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_duty_insert.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1088</xloc>
+      <yloc>496</yloc>
+    </entry>
+    <entry>
+      <name>delete_data 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>TRUNCATE TABLE DMA_CEO_RPT_DATA.`dma_ceo_rpt_general_expense`;
+TRUNCATE TABLE DMA_CEO_RPT_DATA.`dma_ceo_rpt_business_expense`;
+TRUNCATE TABLE DMA_CEO_RPT_DATA.`dma_ceo_rpt_bonding_company_expense`;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DMA_SAL_ACHV_DATA</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 120</name>
+      <description/>
+      <type>SQL</type>
+      <sql>
+insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'ktr_duty_check',
+   '100',
+   CONCAT('${pt_returnvalue}','  源表或依赖任务异常'),
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>576</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>insert_data</name>
+      <description/>
+      <type>SQL</type>
+      <sql>
+SET SESSION tmp_table_size=1024*1024*1024;
+SET SESSION max_heap_table_size=1024*1024*1024;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','dma_ceo_rpt_fin_expense', '0', '总共1步！！', 0,'${p_day}',  NOW(),  'caihl' ); 
+
+-- 财务支出-日常支出费用
+INSERT INTO DMA_CEO_RPT_DATA.`dma_ceo_rpt_general_expense`
+(
+stat_dt                         
+,statistical_time                
+,company_code                    
+,campany_name                    
+,major_type                      
+,sub_type                        
+,rent_cost                       
+,depreciation_amortization_fee   
+,long_term_apportioned_cost      
+,office_expenses                 
+,travel_expenses                 
+,communication_fee               
+,advertising_fee                 
+,vehicle_cost                    
+,hospitality                     
+,service_charge                  
+,conference_fee                  
+,low_value_consumables           
+,commission_charge               
+,other_expenses                  
+,artificial_cost_aggregate       
+,wages                           
+,performance_promotion_and_bonus 
+,social_security                 
+,accumulation_fund               
+,welfare_funds                   
+,recruitment_costs               
+,training_fee                    
+,other                           
+,value_added_tax                 
+,additional_tax                  
+,corporate_income_tax            
+,general_expense_total                               
+,STATUS                          
+,dw_src_sys                      
+,dw_src_tbl                      
+,dw_ins_tm                       
+,dw_upd_tm                       
+,dw_ins_usr                      
+,dw_upd_usr                      
+)
+SELECT 
+ DATE_FORMAT('${pt_day}','%Y-%m-%d')  AS stat_dt                         -- 统计日期
+,statistical_time                 -- 统计日期        
+,company_code                     -- 公司代码        
+,campany_name                     -- 公司名称        
+,major_type                       -- 大类            
+,sub_type                         -- 小类            
+,IFNULL(rent_cost                       ,0) AS  rent_cost                      -- 房租费用        
+,IFNULL(depreciation_amortization_fee   ,0) AS  depreciation_amortization_fee  -- 折旧摊销费      
+,IFNULL(long_term_apportioned_cost      ,0) AS  long_term_apportioned_cost     -- 长期待摊费用    
+,IFNULL(office_expenses                 ,0) AS  office_expenses                -- 办公费          
+,IFNULL(travel_expenses                 ,0) AS  travel_expenses                -- 差旅费          
+,IFNULL(communication_fee               ,0) AS  communication_fee              -- 通讯费          
+,IFNULL(advertising_fee                 ,0) AS  advertising_fee                -- 广告宣传费      
+,IFNULL(vehicle_cost                    ,0) AS  vehicle_cost                   -- 车辆费用        
+,IFNULL(hospitality                     ,0) AS  hospitality                    -- 招待费          
+,IFNULL(service_charge                  ,0) AS  service_charge                 -- 服务费          
+,IFNULL(conference_fee                  ,0) AS  conference_fee                 -- 会议费          
+,IFNULL(low_value_consumables           ,0) AS  low_value_consumables          -- 低值易耗品      
+,IFNULL(commission_charge               ,0) AS  commission_charge              -- 手续费          
+,IFNULL(other_expenses                  ,0) AS  other_expenses                 -- 其他费用        
+,IFNULL(artificial_cost_aggregate       ,0) AS  artificial_cost_aggregate      -- 人工费合计      
+,IFNULL(wages                           ,0) AS  wages                          -- 工资            
+,IFNULL(performance_promotion_and_bonus ,0) AS  performance_promotion_and_bonus-- 绩效提成及奖金  
+,IFNULL(social_security                 ,0) AS  social_security                -- 社保            
+,IFNULL(accumulation_fund               ,0) AS  accumulation_fund              -- 公积金          
+,IFNULL(welfare_funds                   ,0) AS  welfare_funds                  -- 福利费          
+,IFNULL(recruitment_costs               ,0) AS  recruitment_costs              -- 招聘费用        
+,IFNULL(training_fee                    ,0) AS  training_fee                   -- 培训费          
+,IFNULL(other                           ,0) AS  other                          -- 其他            
+,IFNULL(value_added_tax                 ,0) AS  value_added_tax                -- 增值税          
+,IFNULL(additional_tax                  ,0) AS  additional_tax                 -- 附加税          
+,IFNULL(corporate_income_tax            ,0) AS  corporate_income_tax           -- 企业所得税      
+,IFNULL(general_expense_total           ,0) AS  general_expense_total          -- 日常费用合计
+,STATUS 
+, 'ht_cams' AS dw_src_sys
+, 'tb_general_expense_ods' AS dw_src_tbl
+, CURRENT_TIMESTAMP AS dw_ins_tm
+, CURRENT_TIMESTAMP AS dw_upd_tm
+, 'caihl' AS dw_ins_usr
+, 'caihl' AS dw_upd_usr      
+ FROM ODS_XD_TUANDAI_BM.tb_general_expense_ods t
+ WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d') 
+;
+
+-- 业务支出费用
+INSERT INTO DMA_CEO_RPT_DATA.dma_ceo_rpt_business_expense
+(
+ stat_dt                     
+,statistical_time            
+,company_code                
+,campany_name                
+,major_type                  
+,sub_type                    
+,business_rebate_commission  
+,mortgage_registration_fee   
+,assessment_fee              
+,investigation_fee           
+,parking_rate                
+,maintenance_cost            
+,inquiry_fee                 
+,litigation_related_expenses 
+,other_expenses              
+,total_cost_of_business                    
+,STATUS                      
+,dw_src_sys                  
+,dw_src_tbl                  
+,dw_ins_tm                   
+,dw_upd_tm                   
+,dw_ins_usr                  
+,dw_upd_usr
+)
+SELECT
+DATE_FORMAT('${pt_day}','%Y-%m-%d')  AS stat_dt                         -- 统计日期
+,t.statistical_time             --  统计日期        
+,t.company_code                 --  公司代码        
+,t.campany_name                 --  公司名称        
+,t.major_type                   --  大类              
+,t.sub_type                     --  小类              
+,IFNULL(t.business_rebate_commission  ,0) AS  business_rebate_commission   --  业务返点佣金  
+,IFNULL(t.mortgage_registration_fee   ,0) AS  mortgage_registration_fee    --  抵押登记费     
+,IFNULL(t.assessment_fee              ,0) AS  assessment_fee               --  评估费           
+,IFNULL(t.investigation_fee           ,0) AS  investigation_fee            --  调查费           
+,IFNULL(t.parking_rate                ,0) AS  parking_rate                 --  停车费           
+,IFNULL(t.maintenance_cost            ,0) AS  maintenance_cost             --  维修费           
+,IFNULL(t.inquiry_fee                 ,0) AS  inquiry_fee                  --  查询费           
+,IFNULL(t.litigation_related_expenses ,0) AS  litigation_related_expenses  --  诉讼相关费用  
+,IFNULL(t.other_expenses              ,0) AS  other_expenses               --  其他费用        
+,IFNULL(t.total_cost_of_business      ,0) AS  total_cost_of_business       --  业务费用合计  
+,STATUS
+, 'ht_cams' AS dw_src_sys
+, 'tb_business_expense_ods' AS dw_src_tbl
+, CURRENT_TIMESTAMP AS dw_ins_tm
+, CURRENT_TIMESTAMP AS dw_upd_tm
+, 'caihl' AS dw_ins_usr
+, 'caihl' AS dw_upd_usr 
+ FROM ODS_XD_TUANDAI_BM.tb_business_expense_ods t
+ WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d') 
+;
+ 
+ -- 担保公司分摊支出费用 
+INSERT INTO DMA_CEO_RPT_DATA.`dma_ceo_rpt_bonding_company_expense`
+ (
+ stat_dt                      
+,statistical_time             
+,company_code                 
+,campany_name                 
+,major_type                     
+,sub_type                       
+,after_loan                     
+,guarantee_company_total_cost 
+,yd_car_legal_expenses        
+,yd_car_daily_expenses        
+,house_legal_expenses         
+,house_daily_expenses                          
+,STATUS                         
+,dw_src_sys                   
+,dw_src_tbl                    
+,dw_ins_tm                    
+,dw_upd_tm                    
+,dw_ins_usr                   
+,dw_upd_usr      
+ )    
+SELECT
+DATE_FORMAT('${pt_day}','%Y-%m-%d')  AS stat_dt                         -- 统计日期
+,t.statistical_time              --  统计日期                    
+,t.company_code                  --  公司代码                    
+,t.campany_name                  --  公司名称                    
+,t.major_type                    --  大类                          
+,t.sub_type                      --  小类                          
+,IFNULL(t.after_loan                   ,0) AS  after_loan                  --  贷后                          
+,IFNULL(t.guarantee_company_total_cost ,0) AS  guarantee_company_total_cost--  担保公司分摊费用合计  
+,IFNULL(t.yd_car_legal_expenses        ,0) AS  yd_car_legal_expenses       --  一点车贷法务费用        
+,IFNULL(t.yd_car_daily_expenses        ,0) AS  yd_car_daily_expenses       --  一点车贷日常费用        
+,IFNULL(t.house_legal_expenses         ,0) AS  house_legal_expenses        --  房贷法务费用              
+,IFNULL(t.house_daily_expenses         ,0) AS  house_daily_expenses        --  房贷日常费用 
+,STATUS
+, 'ht_cams' AS dw_src_sys
+, 'tb_bonding_company_expense_ods' AS dw_src_tbl
+, CURRENT_TIMESTAMP AS dw_ins_tm
+, CURRENT_TIMESTAMP AS dw_upd_tm
+, 'caihl' AS dw_ins_usr
+, 'caihl' AS dw_upd_usr   
+ FROM ODS_XD_TUANDAI_BM.tb_bonding_company_expense_ods t
+ WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d') 
+;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','将3张财务支出表分别insert3张表中 end>>>>', '0', '总共1步！！', 0,'${p_day}',  NOW(),  'caihl' ); 
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DMA_SAL_ACHV_DATA</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>496</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>SQL_LOG 100</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 400</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 210</from>
+      <to>JavaScript_Return</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_set_date</from>
+      <to>SQL_LOG 200</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 310</from>
+      <to>JavaScript_Return</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 100</from>
+      <to>Set variables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Set variables</from>
+      <to>ktr_set_date</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 200</from>
+      <to>ktr_duty_check</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_duty_check</from>
+      <to>check_value</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>check_value</from>
+      <to>SQL_LOG 210 2 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 210 2 2</from>
+      <to>Java_cycle</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Java_cycle</from>
+      <to>Wait for</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for</from>
+      <to>ktr_duty_check</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_duty_insert</from>
+      <to>SQL_LOG 400</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>delete_data 2</from>
+      <to>SQL_LOG 300</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>delete_data 2</from>
+      <to>SQL_LOG 210</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>check_value</from>
+      <to>delete_data 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Java_cycle</from>
+      <to>SQL_LOG 120</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 120</from>
+      <to>JavaScript_Return</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 300</from>
+      <to>insert_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>insert_data</from>
+      <to>SQL_LOG 310</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>insert_data</from>
+      <to>ktr_duty_insert</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>*************************							
+功      能 ：财务支出表
+创建时间：20180514
+创建人   ：caihl
+源系统	 ：tuandai_bm
+数据源表：
+由于3个支出表都是ODS表 全部放在一起处理生成3张目标表
+tb_general_expense_ods
+tb_business_expense_ods
+tb_bonding_company_expense_ods
+
+运行频率：小时
+注意事项： 
+问题发现： 
+修改记录： 
+***********************
+</note>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
+      <width>442</width>
+      <heigth>285</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>192</backgroundcolorred>
+      <backgroundcolorgreen>192</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <attributes>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"pentaho","value":"N"},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

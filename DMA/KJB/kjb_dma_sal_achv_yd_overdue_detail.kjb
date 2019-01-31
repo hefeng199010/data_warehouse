@@ -1,0 +1,1611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job>
+  <name>kjb_dma_sal_achv_yd_overdue_detail</name>
+  <description/>
+  <extended_description>一点车贷未结清明细表</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/</directory>
+  <created_user>-</created_user>
+  <created_date>2018/01/26 14:01:05.270</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/01/31 11:51:34.108</modified_date>
+  <parameters>
+    <parameter>
+      <name>${p_day}</name>
+      <default_value>2018030719</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>${p_duty_nm}</name>
+      <default_value>dma_sal_achv_fsd_defer_settle_pending_detail</default_value>
+      <description/>
+    </parameter>
+  </parameters>
+  <connection>
+    <name>DMA_SAL_ACHV_DATA</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_DMA_SAL_ACHVNAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>public_data</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_PUBLIC_NAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>64</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1296</xloc>
+      <yloc>480</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 100</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('11',
+   '${p_duty_nm}',
+	'1',
+   '>>>>>>>>>> JOB START >>>>>>>>>>',
+   '100',
+   '任务开始！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>128</xloc>
+      <yloc>304</yloc>
+    </entry>
+    <entry>
+      <name>JavaScript_Return</name>
+      <description/>
+      <type>EVAL</type>
+      <script>1 > 2 </script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 300</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'insert_data',
+   '100',
+   '插入数据库！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>848</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 400</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   '>>>>>>>>>> JOB END >>>>>>>>>>',
+   '100',
+   '更新任务标识，完成！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1168</xloc>
+      <yloc>480</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 310</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'insert_data',
+   '100',
+   '插入数据异常',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>704</xloc>
+      <yloc>608</yloc>
+    </entry>
+    <entry>
+      <name>ktr_set_date</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_set_date.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>304</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 200</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'ktr_set_date',
+   '200',
+   '定义日期变量！！',
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>304</yloc>
+    </entry>
+    <entry>
+      <name>Set variables</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>i_while_count</variable_name>
+          <variable_value>0</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>ktr_duty_check</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_duty_check.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>416</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>check_value</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>pt_returnvalue</fieldname>
+      <variablename>pt_returnvalue</variablename>
+      <fieldtype>number</fieldtype>
+      <mask/>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 210 2 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>
+insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'check_value',
+   '100',
+   CONCAT('${pt_returnvalue}','源表没有生成,需等待2分钟'),
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>Java_cycle</name>
+      <description/>
+      <type>EVAL</type>
+      <script>var attempt = parent_job.getVariable("i_while_count");
+
+if(attempt &lt; 10 )
+{
+   attempt++;
+   parent_job.setVariable("i_while_count", attempt); 
+
+   true;
+
+}
+else
+{
+   
+
+   false;
+}
+</script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>Wait for</name>
+      <description/>
+      <type>DELAY</type>
+      <maximumTimeout>2</maximumTimeout>
+      <scaletime>1</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>416</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>ktr_duty_insert</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${UAT_KTR_DIR}/PUBLIC/KTR/ktr_duty_insert.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>480</yloc>
+    </entry>
+    <entry>
+      <name>SQL_LOG 120</name>
+      <description/>
+      <type>SQL</type>
+      <sql>
+insert into ods_state_log
+  (duty_id,
+   duty_nm,
+   duty_type,
+   deal_nm,
+   step_id,
+   step_desc,
+   row_cnt,
+   state_dt,
+   create_tm,
+   create_usr
+   )
+values
+  ('${pt_dutyno}',
+   '${p_duty_nm}',
+	'1',
+   'ktr_duty_check',
+   '100',
+   CONCAT('${pt_returnvalue}','  源表或依赖任务异常'),
+   0,
+   '${p_day}',
+   NOW(),
+   'dl'
+	
+  )</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>public_data</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>576</xloc>
+      <yloc>720</yloc>
+    </entry>
+    <entry>
+      <name>insert_data</name>
+      <description/>
+      <type>SQL</type>
+      <sql>SET SESSION tmp_table_size=1024*1024*1024;
+SET SESSION max_heap_table_size=1024*1024*1024;
+
+DROP TEMPORARY TABLE IF EXISTS left_principa_amt_tmp1;
+CREATE TEMPORARY TABLE left_principa_amt_tmp1 (
+  business_id varchar(50) DEFAULT NULL COMMENT '业务单号',
+  left_principa_amt decimal(33,2) DEFAULT NULL,
+  KEY idx_business_id (business_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+INSERT INTO left_principa_amt_tmp1
+SELECT t.business_id
+,(MAX(t.borrow_money) - SUM(t.actual_principal)) AS left_principa_amt 
+FROM DWS_DATA.dws_agr_yidian_repayment_basic_info t
+WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+GROUP BY t.business_id;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第1步：生成left_principa_amt_tmp1', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+
+/*增加应收滞纳金费用*/
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp01;
+CREATE TEMPORARY TABLE dma_ceo_rpt_overdue_detail_tmp01 (
+  area_nm varchar(50) DEFAULT NULL COMMENT '业务区域，例如，华南',
+  branch_nm varchar(50) DEFAULT NULL COMMENT '业务所属分公司名',
+  customer_nm varchar(100) DEFAULT NULL,
+  business_id varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  business_type_nm varchar(10)  NULL DEFAULT '',
+  type_nm varchar(10)  NULL DEFAULT '',
+  out_dt datetime DEFAULT NULL,
+  repay_type_nm int(11) DEFAULT NULL COMMENT '还款方式（1:到期本息;2:每月付息;5等额本息） ',
+  cur_repay_period varchar(50) DEFAULT NULL COMMENT '期数 ',
+  borrow_limit INT(11) DEFAULT NULL COMMENT '借款期限 ',
+  borrow_amt decimal(10,2) DEFAULT NULL,
+  receive_repayment_date datetime DEFAULT NULL COMMENT '应收日期 ',
+  receive_principal decimal(32,2) DEFAULT NULL,
+  receive_interest decimal(32,2) DEFAULT NULL,
+  receive_little decimal(33,2) DEFAULT NULL,
+  actual_repayment_date datetime DEFAULT NULL COMMENT '实还日期 ',
+  actual_principal decimal(32,2) DEFAULT NULL,
+  actual_interest decimal(32,2) DEFAULT NULL,
+  actual_total decimal(32,2) DEFAULT NULL,
+  KEY idx_business_id (business_id,cur_repay_period)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp01
+SELECT 
+ '一点车贷' AS area_nm                           -- 片区                
+,t.branch_name   AS branch_nm                         -- 分公司              
+,t.main_customer_name AS customer_nm                       -- 客户名称            
+,t.business_id                       -- 业务编号            
+,'一点车贷' AS business_type_nm                  -- 业务类型            
+,'新增'     AS type_nm                           -- 类型                
+,MIN(t.full_issue_date) AS out_dt                            -- 出款日期            
+,t.repayment_type  AS repay_type_nm                     -- 还款方式            
+,t.business_after_id AS cur_repay_period                  -- 当前期数           
+,t.borrow_limit AS borrow_limit                  -- 借款期限            
+,MAX(IFNULL(t.borrow_money ,0) )AS borrow_amt                        -- 借款金额    add by caihl20180528 改为max               
+,MIN(t.receivable_repayment_date) AS receive_repayment_date            -- 应收日期            
+,SUM(t.receivable_principal )     AS receive_principal                 -- 应收本金（元）      
+,SUM(t.receivable_interest )      AS receive_interest                  -- 应收利息（元）  
+,SUM(t.receivable_principal + t.receivable_interest) AS receive_little                    -- 应收小计（本息）          
+,MIN(t.actual_repayment_date) AS actual_repayment_date             -- 实收日期            
+,SUM(t.actual_principal) AS actual_principal                  -- 实收本金（元）      
+,SUM(t.actual_interest)  AS actual_interest                   -- 实收利息（元）         
+,SUM(t.actual_amount) AS actual_total                         -- 实收合计（元）  取tb_yidian_repayment_actual.amount add by caihl20180528
+FROM DWS_DATA.dws_agr_yidian_repayment_basic_info t               -- 还款计划基本信息 tb_yidian_repayment_plan_tmp
+WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+AND NOT EXISTS 
+     (SELECT 1 FROM ODS_XD_TUANDAI_BM.tb_yidian_repayment_actual_ods tt 
+       WHERE tt.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d') 
+	    and  tt.clear_type IN (1,2,3) 
+		AND  t.business_id = tt.business_id 
+		) -- 排除已经结清数据
+GROUP BY 
+ t.business_area             
+,t.branch_name            
+,t.main_customer_name          
+,t.business_id               
+,t.repayment_type            
+,t.business_after_id 
+;
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第2步：生成dma_ceo_rpt_overdue_detail_tmp01', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+
+-- 第二部计算逾期数据
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp02;
+CREATE TEMPORARY TABLE dma_ceo_rpt_overdue_detail_tmp02 (
+  business_id varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  business_after_id varchar(50) DEFAULT NULL COMMENT '期数 ',
+  cur_ovd_days int(7) DEFAULT NULL,
+  KEY idx_business_id (business_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp02
+SELECT 
+    t.business_id,
+    t.business_after_id,
+    MAX(t.overdue_days) AS cur_ovd_days 
+  FROM DMB_FIN_DATA.dmb_fin_yidian_overdue_days_detail t
+ WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+  GROUP BY t.business_id,
+    t.business_after_id
+    ;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第3步：生成dma_ceo_rpt_overdue_detail_tmp02', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+	
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp03;
+CREATE TEMPORARY TABLE dma_ceo_rpt_overdue_detail_tmp03 (
+  business_id varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  max_ovd_days int(7) DEFAULT NULL,
+  KEY idx_business_id (business_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp03
+SELECT 
+      t.business_id,
+      MAX(t.overdue_days) AS max_ovd_days 
+    FROM DMB_FIN_DATA.dmb_fin_yidian_overdue_days_detail t
+   WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+    GROUP BY t.business_id
+;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第4步：生成dma_ceo_rpt_overdue_detail_tmp03', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+
+
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp04;
+CREATE TEMPORARY TABLE `dma_ceo_rpt_overdue_detail_tmp04` (
+  `business_id` varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  `business_after_id` varchar(50) DEFAULT NULL COMMENT '期数 ',
+  `cur_ovd_days` int(7) DEFAULT NULL,
+  `max_ovd_days` int(7) DEFAULT NULL,
+  `overdue_stage` varchar(3) DEFAULT NULL,
+  KEY `idx_business_id` (`business_id`,`business_after_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp04
+SELECT 
+    t.business_id,
+    t.business_after_id,
+    t.cur_ovd_days,
+    tt.max_ovd_days,
+    (CASE WHEN t.cur_ovd_days  &lt;= 0 THEN 'M0'
+      WHEN t.cur_ovd_days &lt; 31  THEN 'M1'
+      WHEN t.cur_ovd_days &lt; 61  THEN 'M2'
+      WHEN t.cur_ovd_days &lt; 91  THEN 'M3'
+      WHEN t.cur_ovd_days >= 91  THEN 'M3+'
+ END)  AS  overdue_stage 
+FROM dma_ceo_rpt_overdue_detail_tmp02 t 
+  LEFT JOIN 
+    dma_ceo_rpt_overdue_detail_tmp03 tt 
+ON t.business_id = tt.business_id 
+;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第5步：生成dma_ceo_rpt_overdue_detail_tmp04', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+
+-- 第三部计算应收和实收其他费用
+/*计算应收其他费用*/
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp05;
+CREATE TEMPORARY TABLE `dma_ceo_rpt_overdue_detail_tmp05` (
+  `business_id` varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  `business_after_id` varchar(50) DEFAULT NULL COMMENT '期数 ',
+  `receive_platform_delaying_payment` decimal(54,2) DEFAULT NULL,
+  `receive_gps_month_service` decimal(15,2) DEFAULT NULL,
+  `receive_month_cash_deposi` decimal(15,2) DEFAULT NULL,
+  `receive_month_platform_service` decimal(15,2) DEFAULT NULL,
+  `receive_p2p_platform_service` decimal(15,2) DEFAULT NULL,
+  KEY `idx_business_id` (`business_id`,`business_after_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp05
+SELECT 
+t.business_id,
+t.business_after_id, 
+SUM(t.receive_platform_delaying_payment) AS receive_platform_delaying_payment,  --  add by caihl20180530 逾期汇总表中需要计算逾期费用     
+SUM(receive_gps_month_service) AS receive_gps_month_service ,-- 应收月GPS服务费
+SUM(receive_month_cash_deposi) AS receive_month_cash_deposi ,-- 应收月保证金
+SUM(receive_month_platform_service) AS receive_month_platform_service ,-- 应收月平台服务费
+SUM(receive_p2p_platform_service) AS receive_p2p_platform_service -- P2P平台服务费
+FROM DMB_FIN_DATA.dmb_fin_yidian_repay_plan_and_other_dtl t
+WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+GROUP BY 
+t.business_id,
+t.business_after_id
+;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第6步：生成dma_ceo_rpt_overdue_detail_tmp05', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+
+/*计算实收金额
+实收其他费用（元）  实收滞纳金（元）
+*/
+DROP TEMPORARY TABLE IF EXISTS dma_ceo_rpt_overdue_detail_tmp06;
+CREATE TEMPORARY TABLE `dma_ceo_rpt_overdue_detail_tmp06` (
+  `business_id` varchar(50) DEFAULT NULL COMMENT '业务单号 ',
+  `business_after_id` varchar(50) DEFAULT NULL COMMENT '期数 ',
+  `actual_gps_month_service` decimal(15,2) DEFAULT NULL,
+  `actual_month_cash_deposi` decimal(15,2) DEFAULT NULL,
+  `actual_month_platform_service` decimal(15,2) DEFAULT NULL,
+  `actual_p2p_platform_service` decimal(15,2) DEFAULT NULL,
+  `actual_delaying_interest` decimal(15,2) DEFAULT NULL,
+  `actual_prepayment_contract` decimal(15,2) DEFAULT NULL,
+  `actual_surplus` decimal(15,2) DEFAULT NULL,
+  `actual_delaying_payment` decimal(54,2) DEFAULT NULL,
+  KEY `idx_business_id` (`business_id`,`business_after_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+INSERT INTO dma_ceo_rpt_overdue_detail_tmp06
+SELECT 
+t.business_id,
+t.business_after_id, 
+-- 取实际收取的其他费用（实收GPS月收服务费、月保证金、月平台服务费、P2P平台服务费、逾期利息、提前还款违约金、实收结余）滞纳金不需要计算在其他费用中
+SUM(actual_gps_month_service    ) AS  actual_gps_month_service ,                 -- 实收GPS月收服务费  
+SUM(actual_month_cash_deposi   ) AS  actual_month_cash_deposi ,                 -- 实收月保证金    
+SUM(actual_month_platform_service ) AS  actual_month_platform_service ,                 -- 实收月平台服务费    
+SUM(actual_p2p_platform_service ) AS  actual_p2p_platform_service ,                 -- 实收P2P平台服务费    
+SUM(actual_delaying_interest) AS  actual_delaying_interest ,                 -- 实收逾期利息    
+SUM(actual_prepayment_contract   ) AS  actual_prepayment_contract ,                 -- 实收提前还款违约金    
+SUM(actual_surplus  ) AS  actual_surplus ,                 -- 实收实收结余     
+SUM(actual_delaying_payment )   AS actual_delaying_payment       -- 实收滞纳金（元）
+FROM DMB_FIN_DATA.dmb_fin_yidian_repay_actual_and_other_dtl t
+WHERE t.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d')
+GROUP BY 
+t.business_id,
+t.business_after_id
+;
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第7步：生成dma_ceo_rpt_overdue_detail_tmp06', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+	
+	
+alter table DMA_SAL_ACHV_DATA.dma_sal_achv_yd_overdue_detail_his truncate partition dma_sal_achv_yd_overdue_detail_his_${pt_day};
+INSERT INTO DMA_SAL_ACHV_DATA.dma_sal_achv_yd_overdue_detail_his
+(
+stat_dt                            -- 跑批日期            
+,data_dt                           -- 数据日期（应收日期）
+,area_nm                           -- 片区                
+,branch_nm                         -- 分公司              
+,customer_nm                       -- 客户名称            
+,business_id                       -- 业务编号            
+,business_type_nm                  -- 业务类型            
+,type_nm                           -- 类型                
+,out_dt                            -- 出款日期            
+,repay_type_nm                     -- 还款方式            
+,cur_repay_period                  -- 当前期数
+,borrow_limit	                   -- 借款期限            
+,borrow_amt                        -- 借款金额            
+,left_principa_amt                 -- 剩余本金            
+,max_ovd_days                      -- 最大逾期天数        
+,cur_ovd_days                      -- 当期逾期天数        
+,asset_type                        -- 资产分类            
+,overdue_stage                     -- 逾期阶段            
+,receive_repayment_date            -- 应收日期            
+,receive_principal                 -- 应收本金（元）      
+,receive_interest                  -- 应收利息（元）      
+,`receive_gps_month_service` 
+,`receive_month_cash_deposi` 
+,`receive_month_platform_service`
+,`receive_p2p_platform_service`
+,receive_platform_delaying_payment   
+,receive_little                    -- 应收小计（本息）    
+,receive_total                     -- 应收合计（元）      
+,actual_repayment_date             -- 实收日期            
+,actual_principal                  -- 实收本金（元）      
+,actual_interest                   -- 实收利息（元）     
+  ,`actual_gps_month_service`
+ , `actual_month_cash_deposi` 
+ , `actual_month_platform_service` 
+ , `actual_p2p_platform_service` 
+ , `actual_delaying_interest` 
+ , `actual_prepayment_contract`
+ , `actual_surplus`
+,actual_delaying_payment           -- 实收滞纳金（元）    
+,actual_little                     -- 实收小计（本息）    
+,actual_total                      -- 实收合计（元）      
+,dw_src_sys                        -- 来源系统            
+,dw_src_tbl                        -- 来源表              
+,dw_ins_tm                         -- 插入时间            
+,dw_upd_tm                         -- 更新时间            
+,dw_ins_usr                        -- 插入用户            
+,dw_upd_usr                        -- 更新用户            
+,part_dt                           -- 分区时间            
+)
+SELECT 
+DATE_FORMAT('${pt_day}','%Y-%m-%d') AS stat_dt
+,DATE_FORMAT(t.receive_repayment_date,'%Y-%m-%d')  AS data_dt                          --  获取应收日期
+,t.area_nm                          -- 片区                
+,t.branch_nm                        -- 分公司              
+,t.customer_nm                      -- 客户名称            
+,t.business_id                      -- 业务编号            
+,t.business_type_nm                 -- 业务类型            
+,t.type_nm                          -- 类型                
+,DATE_FORMAT(t.out_dt,'%Y-%m-%d')  AS out_dt                          -- 出款日期            
+,CASE WHEN t.repay_type_nm in (1,2) THEN '先息后本'
+      WHEN t.repay_type_nm = 5      THEN '等额本息' else t.repay_type_nm END  AS repay_type_nm           -- 还款方式 	  
+,t.cur_repay_period                 -- 当前期数       
+,t.borrow_limit                     -- 借款期限     
+,t.borrow_amt                       -- 借款金额            
+,IFNULL(prin.left_principa_amt,0) AS left_principa_amt                          -- 剩余本金            
+,ovd.max_ovd_days                     -- 最大逾期天数        
+,ovd.cur_ovd_days                     -- 当期逾期天数        
+,'--' AS asset_type                   -- 资产分类            
+,ovd.overdue_stage                    -- 逾期阶段            
+,DATE_FORMAT(t.receive_repayment_date,'%Y-%m-%d') AS receive_repayment_date      -- 应收日期            
+,t.receive_principal                -- 应收本金（元）      
+,t.receive_interest                 -- 应收利息（元）      
+,IFNULL(plan.receive_gps_month_service,0)                 AS receive_gps_month_service                  -- 应收月GPS服务费
+,IFNULL(plan.receive_month_cash_deposi,0)                 AS receive_month_cash_deposi                  -- 应收月保证金
+,IFNULL(plan.receive_month_platform_service,0)                 AS receive_month_platform_service                  -- 应收月平台服务费
+,IFNULL(plan.receive_p2p_platform_service,0)                 AS receive_p2p_platform_service                  -- P2P平台服务费
+,IFNULL(plan.receive_platform_delaying_payment,0) AS receive_platform_delaying_payment  -- 应收滞纳金 add by caihl20180530
+,t.receive_little                                                                       -- 应收小计（本息）    
+,(IFNULL(t.receive_little,0) + IFNULL(plan.receive_gps_month_service,0) + IFNULL(plan.receive_month_cash_deposi,0)+IFNULL(plan.receive_month_platform_service,0)+ IFNULL(plan.receive_p2p_platform_service,0)) AS receive_total                    -- 应收合计（元）      
+,DATE_FORMAT(t.actual_repayment_date,'%Y-%m-%d')                 AS  actual_repayment_date           -- 实收日期            
+,t.actual_principal                 -- 实收本金（元）      
+,t.actual_interest                  -- 实收利息（元）      
+,IFNULL(actual.actual_gps_month_service,0    ) AS  actual_gps_month_service                  -- 实收GPS月收服务费  
+,IFNULL(actual.actual_month_cash_deposi ,0  ) AS  actual_month_cash_deposi                  -- 实收月保证金    
+,IFNULL(actual.actual_month_platform_service,0 ) AS  actual_month_platform_service                  -- 实收月平台服务费    
+,IFNULL(actual.actual_p2p_platform_service ,0) AS  actual_p2p_platform_service                  -- 实收P2P平台服务费    
+,IFNULL(actual.actual_delaying_interest,0) AS  actual_delaying_interest                 -- 实收逾期利息    
+,IFNULL(actual.actual_prepayment_contract,0   ) AS  actual_prepayment_contract                  -- 实收提前还款违约金    
+,IFNULL(actual.actual_surplus  ,0) AS  actual_surplus                  -- 实收实收结余    
+,IFNULL(actual.actual_delaying_payment,0)  AS  actual_delaying_payment          -- 实收滞纳金（元）    
+,(IFNULL(t.actual_principal,0) + IFNULL(t.actual_interest,0) ) AS  actual_little                    -- 实收小计（本息）    
+-- ,(t.actual_principal + t.actual_interest + actual.actual_other_fee  + actual.actual_delaying_payment) AS actual_total                     -- 实收合计（元）
+,IFNULL(t.actual_total,0) AS actual_total                                                 -- 实收合计（元）
+ ,'tuandai_bm' AS dw_src_sys
+ ,'dws_agr_yidian_repayment_basic_info...' AS dw_src_tbl
+ ,CURRENT_TIMESTAMP AS dw_ins_tm
+ ,CURRENT_TIMESTAMP AS dw_upd_tm
+ ,'caihl' AS dw_ins_usr
+ ,'caihl' AS dw_upd_usr
+ ,DATE_FORMAT('${pt_day}','%Y-%m-%d')	AS	part_dt	     --	分区日期 
+FROM dma_ceo_rpt_overdue_detail_tmp01 t
+  LEFT JOIN dma_ceo_rpt_overdue_detail_tmp04  ovd
+  ON t.business_id = ovd.business_id
+  AND t.cur_repay_period = ovd.business_after_id
+  LEFT JOIN dma_ceo_rpt_overdue_detail_tmp05 plan
+    ON t.business_id = plan.business_id
+  AND t.cur_repay_period = plan.business_after_id
+  LEFT JOIN dma_ceo_rpt_overdue_detail_tmp06 actual
+     ON t.business_id = actual.business_id
+  AND t.cur_repay_period = actual.business_after_id
+  LEFT JOIN left_principa_amt_tmp1 prin
+    ON t.business_id = prin.business_id
+;
+
+truncate table DMA_SAL_ACHV_DATA.dma_sal_achv_yd_overdue_detail;
+INSERT INTO DMA_SAL_ACHV_DATA.dma_sal_achv_yd_overdue_detail
+select `stat_dt`,
+  `data_dt`,
+  `area_nm`,
+  `branch_nm`,
+  `customer_nm`,
+  `business_id`,
+  `business_type_nm`,
+  `type_nm`,
+  `out_dt`,
+  `repay_type_nm`,
+  `cur_repay_period`,
+  borrow_limit ,
+  `borrow_amt`,
+  `left_principa_amt`,
+  `max_ovd_days`,
+  `cur_ovd_days`,
+  `asset_type`,
+  `overdue_stage`,
+  `receive_repayment_date`,
+  `receive_principal`,
+  `receive_interest`,
+  `receive_gps_month_service`,
+  `receive_month_cash_deposi`,
+  `receive_month_platform_service`,
+  `receive_p2p_platform_service`,
+  `receive_platform_delaying_payment`,
+  `receive_little`,
+  `receive_total`,
+  `actual_repayment_date`,
+  `actual_principal`,
+  `actual_interest`,
+  `actual_gps_month_service`,
+  `actual_month_cash_deposi`,
+  `actual_month_platform_service`,
+  `actual_p2p_platform_service`,
+  `actual_delaying_interest`,
+  `actual_prepayment_contract`,
+  `actual_surplus`,
+  `actual_delaying_payment`,
+  `actual_little`,
+  `actual_total`,
+  `dw_src_sys`,
+  `dw_src_tbl`,
+  `dw_ins_tm`,
+  `dw_upd_tm`,
+  `dw_ins_usr`,
+  `dw_upd_usr`
+ from dma_sal_achv_yd_overdue_detail_his a 
+ where a.part_dt = DATE_FORMAT('${pt_day}','%Y-%m-%d');
+
+INSERT INTO public_data.tb_duty_detail_log
+  (duty_id,duty_nm,duty_type, deal_nm,step_id, step_desc, row_cnt, state_dt,create_tm, create_usr)
+VALUES
+    ('${pt_dutyno}', '${p_duty_nm}','1','part2第8步：生成目标表>>>end', '0', '总共8步！！', 0,'${p_day}',  NOW(),  'caihl' );
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DMA_SAL_ACHV_DATA</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>704</xloc>
+      <yloc>464</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>SQL_LOG 100</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 400</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_set_date</from>
+      <to>SQL_LOG 200</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 310</from>
+      <to>JavaScript_Return</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 100</from>
+      <to>Set variables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Set variables</from>
+      <to>ktr_set_date</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 200</from>
+      <to>ktr_duty_check</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_duty_check</from>
+      <to>check_value</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>check_value</from>
+      <to>SQL_LOG 210 2 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 210 2 2</from>
+      <to>Java_cycle</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Java_cycle</from>
+      <to>Wait for</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for</from>
+      <to>ktr_duty_check</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ktr_duty_insert</from>
+      <to>SQL_LOG 400</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Java_cycle</from>
+      <to>SQL_LOG 120</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 120</from>
+      <to>JavaScript_Return</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>insert_data</from>
+      <to>SQL_LOG 310</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>check_value</from>
+      <to>insert_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>insert_data</from>
+      <to>SQL_LOG 300</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL_LOG 300</from>
+      <to>ktr_duty_insert</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>*************************							
+功      能 ：一点车贷未结清明细表
+创建时间：20180608
+创建人   ：dailiang
+源系统	 ：tuandai_bm
+数据源表：tb_car_business_after_ods
+               ...
+运行频率：天
+注意事项： 
+问题发现： 
+修改记录： 
+***********************
+</note>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
+      <width>442</width>
+      <heigth>220</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>192</backgroundcolorred>
+      <backgroundcolorgreen>192</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <attributes>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"pentaho","value":"N"},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

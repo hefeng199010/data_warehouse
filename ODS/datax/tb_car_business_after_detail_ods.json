@@ -1,0 +1,95 @@
+{
+        "job": {
+                "setting": {
+                        "speed": {
+                                "channel": 10
+                        },
+                        "errorLimit": {
+                                "record": 0,
+                                "percentage": 0.02
+                        }
+                },
+                "content": [{
+                        "reader": {
+                                "name": "mysqlreader",
+                                "parameter": {
+                                        "username": "datacen_kettle",
+                                        "password": "GCf4FxJH",
+                                        "connection": [{
+                                                "querySql": [
+                                                "SELECT
+  id
+, business_id
+, business_after_id
+, fee_id
+, fee_name
+, after_fee_type
+, plan_fee_value
+, plan_repayment_date
+, actual_fee_value
+, actual_repayment_date
+, create_time
+, create_user
+, update_time
+, update_user
+, plan_fee_rate
+,'tuandai_bm' dw_src_sys
+,'tb_car_business_after_detail' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM tb_car_business_after_detail
+"
+                                                ],
+                                                "jdbcUrl": [
+                                                        "jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+                                                ]
+                                        }]
+                                }
+                        },
+                        "writer": {
+                                "name": "mysqlwriter",
+                                "parameter": {
+                                        "writeMode": "insert",
+                                        "username": "datacen_kettle",
+                                        "password": "GCf4FxJH",
+                                        "column": [
+                                                "id",
+"business_id",
+"business_after_id",
+"fee_id",
+"fee_name",
+"after_fee_type",
+"plan_fee_value",
+"plan_repayment_date",
+"actual_fee_value",
+"actual_repayment_date",
+"create_time",
+"create_user",
+"update_time",
+"update_user",
+"plan_fee_rate",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+                                        ],
+                                        "session": [
+                                                "set session sql_mode='ANSI'"
+                                        ],
+                                        "connection": [{
+                                                "jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+                                                "table": [
+                                                        "${tableName}"
+                                                ]
+                                        }]
+                                }
+                        }
+                }]
+        }
+}

@@ -1,0 +1,166 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 10
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT
+  ID
+, Car_Business_Id
+, Car_Business_Extension_Id
+, Extension_amount
+, Rollover_Rates
+, Renewal_Term
+, Rollover_Reimbursement_Means
+, Principal_TotalCost
+, Interest_TotalCost
+, Consulting_TotalCost
+, Loan_TotalCost
+, Remark
+, Modify_User
+, Modify_Time
+, Operate_Time
+, Operator_Id
+, Operator_Name
+, Operator_Dept
+, Branch_Id
+, Cur_WorkFlow_Id
+, Cur_WorkFlow_Name
+, Cur_WorkFlow_BranchID
+, Cur_WorkFlow_FlowMainID
+, Business_Status
+, service_rate
+, extension_charges
+, gps_cost
+, gps_cost_type
+, violation_cost
+, annual_deposit
+, insurance_deposit
+, parking_fee
+, parking_fee_type
+, other_cost
+, other_cost_remark
+, old_borrow_money
+, borrow_date_limit
+, extension_repay_date
+, car_is_scene
+, Rollover_Reimbursement_Means_ID
+, is_deduce_overdue
+, deduce_overdue_remark
+, deduce_after_overdue_money
+, original_business_id
+, contract_confirm
+, isConfigFee
+, branch_name
+, legal_person
+, branch_telephone
+, business_after_guid
+,'tuandai_bm' dw_src_sys
+,'tb_car_business_exhibition' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM tb_car_business_exhibition
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"ID",
+"Car_Business_Id",
+"Car_Business_Extension_Id",
+"Extension_amount",
+"Rollover_Rates",
+"Renewal_Term",
+"Rollover_Reimbursement_Means",
+"Principal_TotalCost",
+"Interest_TotalCost",
+"Consulting_TotalCost",
+"Loan_TotalCost",
+"Remark",
+"Modify_User",
+"Modify_Time",
+"Operate_Time",
+"Operator_Id",
+"Operator_Name",
+"Operator_Dept",
+"Branch_Id",
+"Cur_WorkFlow_Id",
+"Cur_WorkFlow_Name",
+"Cur_WorkFlow_BranchID",
+"Cur_WorkFlow_FlowMainID",
+"Business_Status",
+"service_rate",
+"extension_charges",
+"gps_cost",
+"gps_cost_type",
+"violation_cost",
+"annual_deposit",
+"insurance_deposit",
+"parking_fee",
+"parking_fee_type",
+"other_cost",
+"other_cost_remark",
+"old_borrow_money",
+"borrow_date_limit",
+"extension_repay_date",
+"car_is_scene",
+"Rollover_Reimbursement_Means_ID",
+"is_deduce_overdue",
+"deduce_overdue_remark",
+"deduce_after_overdue_money",
+"original_business_id",
+"contract_confirm",
+"isConfigFee",
+"branch_name",
+"legal_person",
+"branch_telephone",
+"business_after_guid",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

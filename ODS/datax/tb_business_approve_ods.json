@@ -1,0 +1,194 @@
+{
+	"job": {
+		"setting": {
+			"speed": {
+				"channel": 5
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0.02
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "mysqlreader",
+				"parameter": {
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"connection": [{
+						"querySql": [
+                                    		"SELECT
+  BUSINESS_ID
+, CUSTOMER_NAME
+, DEPT_ID
+, BUSINESS_TYPE
+, APPROVE_TIME
+, ATTEND_LIST
+, HANDLER_ID
+, CONFIRM_ID
+, APPLY_MONEY
+, APPLY_MONTH
+, APPLY_RATE
+, RETURN_RATE
+, APPROVE_RESULT
+, APPROVE_MONEY
+, APPROVE_MONTH
+, APPROVE_RATE
+, APPROVE_RETURN_RATE
+, APPROVE_WAY
+, APPROVE_MEASURE
+, APPROVE_OTHER
+, ADD_INSPECT
+, PENDING
+, REJECT
+, REMARK
+, RISK_RESULT
+, RISK_CONTROL
+, RISK_TIME
+, MANAGER_TIME
+, UPDATE_USER
+, UPDATE_TIME
+, INPUT_USER
+, INPUT_TIME
+, HANDLER_TIME
+, HANDLER_USER
+, RESERVE_1
+, manager_remark
+, date_type
+, service_rate
+, approve_service
+, return_capital
+, return_capital_month
+, approve_return_rate_money
+, risk_measure_id
+, risk_measure_time
+, risk_measure_result
+, risk_measure_remark
+, search_message
+, customerMsg_IsComplete
+, Month_Principal_Amount
+, apply_month_principal_amount
+, Begin_Principal_Periods
+, project_basic
+, main_risk
+, operation_reason
+, borrower_info
+, guaranty_desc
+, guarantees_type
+, enterprise_operation_info
+, project_opinion
+, risk_assessment
+, participate_person
+, house_mortgage_debt_rate
+, house_mortgage_rate
+, month_return_money_proportion
+,'tuandai_bm' dw_src_sys
+,'tb_business_approve' dw_src_tbl
+,NOW() dw_ins_tm
+,NOW() dw_upd_tm
+,'dailiang' dw_ins_usr
+,'dailiang' dw_upd_usr
+,DATE_FORMAT('${pt_day}','%Y-%m-%d') part_dt
+FROM tb_business_approve
+"
+                                		],
+						"jdbcUrl": [
+							"jdbc:mysql://10.100.8.56:3306/tuandai_bm?useUnicode=true&characterEncoding=utf-8"
+						]
+					}]
+				}
+			},
+			"writer": {
+				"name": "mysqlwriter",
+				"parameter": {
+					"writeMode": "insert",
+					"username": "datacen_kettle",
+					"password": "GCf4FxJH",
+					"column": [
+						"BUSINESS_ID",
+"CUSTOMER_NAME",
+"DEPT_ID",
+"BUSINESS_TYPE",
+"APPROVE_TIME",
+"ATTEND_LIST",
+"HANDLER_ID",
+"CONFIRM_ID",
+"APPLY_MONEY",
+"APPLY_MONTH",
+"APPLY_RATE",
+"RETURN_RATE",
+"APPROVE_RESULT",
+"APPROVE_MONEY",
+"APPROVE_MONTH",
+"APPROVE_RATE",
+"APPROVE_RETURN_RATE",
+"APPROVE_WAY",
+"APPROVE_MEASURE",
+"APPROVE_OTHER",
+"ADD_INSPECT",
+"PENDING",
+"REJECT",
+"REMARK",
+"RISK_RESULT",
+"RISK_CONTROL",
+"RISK_TIME",
+"MANAGER_TIME",
+"UPDATE_USER",
+"UPDATE_TIME",
+"INPUT_USER",
+"INPUT_TIME",
+"HANDLER_TIME",
+"HANDLER_USER",
+"RESERVE_1",
+"manager_remark",
+"date_type",
+"service_rate",
+"approve_service",
+"return_capital",
+"return_capital_month",
+"approve_return_rate_money",
+"risk_measure_id",
+"risk_measure_time",
+"risk_measure_result",
+"risk_measure_remark",
+"search_message",
+"customerMsg_IsComplete",
+"Month_Principal_Amount",
+"apply_month_principal_amount",
+"Begin_Principal_Periods",
+"project_basic",
+"main_risk",
+"operation_reason",
+"borrower_info",
+"guaranty_desc",
+"guarantees_type",
+"enterprise_operation_info",
+"project_opinion",
+"risk_assessment",
+"participate_person",
+"house_mortgage_debt_rate",
+"house_mortgage_rate",
+"month_return_money_proportion",
+"dw_src_sys",
+"dw_src_tbl",
+"dw_ins_tm",
+"dw_upd_tm",
+"dw_ins_usr",
+"dw_upd_usr",
+"part_dt"
+					],
+					"session": [
+						"set session sql_mode='ANSI'"
+					],
+					"connection": [{
+						"jdbcUrl": "jdbc:mysql://10.100.8.56:3306/ODS_XD_TUANDAI_BM?useUnicode=true&characterEncoding=utf-8",
+						"table": [
+							"${tableName}"
+						]
+					}]
+				}
+			}
+		}]
+	}
+}
+

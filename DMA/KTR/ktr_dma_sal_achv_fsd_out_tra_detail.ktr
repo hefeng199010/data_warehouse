@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>ktr_dma_sal_achv_fsd_out_tra_detail</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2018/01/27 10:21:33.390</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2018/01/27 10:21:33.390</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>DMA_SAL_ACHV_DATA</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_DMA_SAL_ACHVNAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>dwd_data</name>
+    <server>${UAT_DC_DB_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${UAT_DC_DB_DWD_NAME}</database>
+    <port>3306</port>
+    <username>${UAT_DC_DB_USER}</username>
+    <password>${UAT_DC_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.characterEncoding</code>
+        <attribute>utf8</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>3306</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>表输入</from>
+      <to>表输出</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>表输入</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dwd_data</connection>
+    <sql>SELECT
+ DISTINCT
+ SUBSTRING('${p_day}',1,8) stat_dt,
+  a.business_id,                                                                     #业务编号        
+  IFNULL(a1.dept_name,'未知') area_nm,                                               #区域            
+  IFNULL(a2.dept_name,'未知') branch_nm,                                             #分公司          
+  IFNULL(a4.user_name,'未知') operator_nm,                                           #客户经理        
+  CASE WHEN a.is_extension=0 THEN '净新增业务' ELSE '展期业务' END  type_nm,         #类型            
+  IFNULL(a3.type_name,'未知') business_type_nm,                                      #业务类型    
+  case when a.issue_type=1 then '是' else '否' end   is_issue,                       #是否上标    
+  CASE WHEN h.business_id IS NOT NULL THEN '是' ELSE '否' END is_full_issue,         #是否满标        
+  a.customer_list customer_nm,                                                       #借款人          
+  DATE_FORMAT(a.input_time, '%Y%m%d')             input_dt,                        #受理日期        
+  DATE_FORMAT(a.process_modify_time,'%Y%m%d')    update_dt,                        #更新日期    
+  b.apply_dt,                                                                       #申请日期
+  b.pass_dt,                                                                        #通过日期
+  b.sign_dt,                                                                        #签署日期
+  IFNULL(a7.repay_way_nm,'未知')  repay_type_nm,                                    #还款方式        
+  IFNULL(a5.dy_flg,'未知')            mtge_type_nm,                                  #抵押类型        
+  IFNULL(a6.repay_status_subtype_nm,'未知')   cur_state,                             #当前状态        
+  IFNULL(a.audit_borrow_limit,0)      borrow_limit,                                         #借款期限   
+  IFNULL(a.audit_borrow_money,0)      borrow_amt,                                           #借款金额   
+  IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_output_cnt ELSE 0 END,0) new_out_cnt,      #净新增出款单数  
+  IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_output_amt  ELSE 0 END,0)  new_out_amt,      #净新增业务出款额
+  IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_apply_cnt ELSE 0 END,0) new_apl_cnt,        #净新增申请单数量
+  IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_pass_cnt ELSE 0 END,0) new_pass_cnt,        #净新增通过件数量
+  IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_sign_cnt ELSE 0 END,0) new_sign_cnt,        #净新增签约件数  
+  IFNULL(CASE WHEN a.is_extension=1 THEN h.full_borrow_money  ELSE 0 END,0) etsn_amt,          #展期业务金额    
+  IFNULL(CASE WHEN d.business_id IS NOT NULL THEN 1 ELSE 0 END,0) ode_cnt,                     #逾期笔数        
+  IFNULL(d.overdue_prpa,0) ode_prpa,                                                 #逾期本金        
+  IFNULL(d.overdue_acal,0) ode_acal,                                                 #逾期利息        
+  IFNULL(d.overdue_plty,0) ode_plty,                                                 #逾期违约金      
+  IFNULL(CASE WHEN e.business_id IS NOT NULL THEN 1 ELSE 0 END,0)  settle_cnt,                 #结清笔数        
+  IFNULL(e.bef_settle_prpa,0) bef_settle_prpa,                                       #提前结清金额    
+  IFNULL(e.bef_settle_plty,0) bef_settle_plty,                                       #提前结清违约金  
+  IFNULL(e.nml_settle_prpa,0) nml_settle_prpa,                                       #到期结清金额    
+  IFNULL(e.ode_settle_prpa,0) ode_settle_prpa,                                       #逾期结清金额    
+  IFNULL(a.approve_rate,0)/12 mon_rate,                                              #平台月化利息    
+  IFNULL(f.day_pltfm_amt,0)+IFNULL(f.day_brh_srv_amt,0)+IFNULL(CASE WHEN a.is_extension=0 THEN b.cur_day_output_amt  ELSE 0 END,0)*IFNULL(a.approve_rate,0)/12 mon_crt_inc, #月创收
+  IFNULL(c.one_tm_pt_fee,0) one_tm_pt_fee,                                           #平台服务费-放款前一次性收取  
+  IFNULL(f.day_pltfm_amt,0) mon_lj_pt_fee,                                           #平台服务费-每月收取累计      
+  IFNULL(c.one_tm_fgsfw_fee,0) one_tm_fgsfw_fee,                                     #分公司服务费-放款前一次性收取
+  IFNULL(f.day_brh_srv_amt,0) mon_lj_fgsfw_fee,                                      #分公司服务费-每月收取累计
+  IFNULL(c.one_tm_db_fee,0) one_tm_db_fee,                                           #担保费                       
+  IFNULL(c.one_tm_xzzh_fee,0) one_tm_xzzh_fee,                                       #行政综合费                   
+  IFNULL(c.one_tm_pt_fee_rto,0)+IFNULL(one_tm_fgsfw_fee_rto,0)+IFNULL(c.one_tm_db_fee_rto,0) pre_sys_serv_fee_rto,                           #前置系统服务费系数           
+  IFNULL(c.one_tm_pt_fee,0)+IFNULL(c.one_tm_fgsfw_fee,0)+IFNULL(c.one_tm_db_fee,0) serv_fee_crt_inc,                                         #首期服务费创收               
+  IFNULL(CASE WHEN a.is_extension=0 THEN IFNULL(c.one_tm_pt_fee,0)+IFNULL(c.one_tm_fgsfw_fee,0)+IFNULL(c.one_tm_db_fee,0) ELSE 0 END,0) new_pre_serv_fee_inc,        #净新增业务首期前置服务费创收 
+  IFNULL(CASE WHEN a.is_extension=0 THEN IFNULL(c.one_tm_fgsfw_fee,0)+IFNULL(c.one_tm_db_fee,0) ELSE 0 END,0) new_one_tm_fee,                                 #净新增业务一次性收取费用     
+  IFNULL(CASE WHEN a.is_extension=0 THEN IFNULL(f.day_brh_srv_amt,0) ELSE 0 END,0) new_mon_fee,                                    #净新增业务按月收取费用       
+  IFNULL(CASE WHEN a.is_extension=1 THEN IFNULL(c.one_tm_pt_fee,0)+IFNULL(c.one_tm_fgsfw_fee,0)+IFNULL(c.one_tm_db_fee,0) ELSE 0 END,0) etsn_pre_serv_fee_inc,                          #展期业务首期前置服务费创收   
+  IFNULL(CASE WHEN a.is_extension=1 THEN IFNULL(c.one_tm_fgsfw_fee,0)+IFNULL(c.one_tm_db_fee,0) ELSE 0 END,0) etsn_one_tm_fee,                                #展期业务一次性收取费用       
+  IFNULL(CASE WHEN a.is_extension=1 THEN IFNULL(f.day_brh_srv_amt,0) ELSE 0 END,0) etsn_mon_fee,                                   #展期业务按月收取费用         
+  DATE_FORMAT(g.shd_repay_date,'%Y-%m-%d') pln_settle_tm,                                  #计划结清时间                 
+  DATE_FORMAT(e.settle_dt,'%Y-%m-%d') act_settle_tm,                                  #实际结清时间              
+  'tuandai_bm' AS dw_src_sys,
+  'dws_agr_xd_business,dmb_opr_xd_business_stat_sum,dmb_opr_xd_one_tm_fee_sum,dmb_opr_xd_overdue_sum,dmb_opr_xd_settle_sum,dmb_fin_xd_due_amt_reced_sum,dws_agr_xd_business_after' AS dw_src_tbl,
+  CURRENT_TIMESTAMP AS dw_ins_tm,
+  CURRENT_TIMESTAMP AS dw_upd_tm,
+  'sunqiang' AS dw_ins_usr,
+  'sunqiang' AS dw_upd_usr
+FROM DWS_DATA.dws_agr_xd_business a 
+ LEFT JOIN DWD_DATA.dwd_emp_xd_department a1
+  ON a.area_id=a1.DEPT_ID
+   AND a1.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DWD_DATA.dwd_emp_xd_department a2
+  ON a.branch_id=a2.DEPT_ID
+   AND a2.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DWD_DATA.dwd_cde_xd_business_type a3
+  ON a.business_type=a3.TYPE_ID
+   AND a3.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DWD_DATA.dwd_cut_xd_user a4
+  ON a.original_id=a4.user_id
+   AND a4.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d') 
+ LEFT JOIN (SELECT BUSINESS_ID,
+             CASE WHEN SUM(IFNULL(BORROW_BALANCE,0))>0 THEN '二抵' ELSE '一抵' END AS dy_flg 
+             FROM DWD_DATA.dwd_agr_xd_fsd_house
+              WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+             GROUP BY BUSINESS_ID 
+           ) a5
+   ON a.business_id=a5.business_id
+ LEFT JOIN DIM_DATA.dim_evt_xd_repay_status_subtype a6 
+  ON a.repay_status_subtype =a6.repay_status_subtype_id
+ LEFT JOIN DIM_DATA.dim_evt_xd_repay_way a7 
+  ON a.apply_repayment_type_id = a7.repay_way_id
+ LEFT JOIN  DMB_OPR_DATA.dmb_opr_xd_business_stat_sum b
+  ON a.business_id=b.business_id
+   AND  b.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DMB_FIN_DATA.dmb_fin_xd_one_tm_fee_sum c 
+  ON a.business_id=c.business_id
+   AND c.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DMB_RSK_DATA.dmb_rsk_xd_overdue_sum d 
+  ON a.business_id=d.business_id
+   AND d.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN DMB_FIN_DATA.dmb_fin_xd_settle_sum e 
+  ON a.business_id=e.business_id
+   AND e.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+ LEFT JOIN (SELECT business_id,
+                    SUM(day_pltfm_amt) day_pltfm_amt,
+                    SUM(day_brh_srv_amt) day_brh_srv_amt
+             FROM DMB_FIN_DATA.dmb_fin_xd_due_amt_reced_sum
+              WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+            GROUP BY business_id 
+           ) f
+  ON a.business_id=f.business_id
+ LEFT JOIN (SELECT ext_business_id as business_id,
+                   MAX(shd_repay_date) shd_repay_date
+             FROM DWS_DATA.dws_agr_xd_business_after 
+              WHERE part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+            GROUP BY ext_business_id 
+           ) g 
+  ON a.business_id=g.business_id
+ LEFT JOIN (
+            SELECT
+             b.business_id,
+             SUM(full_borrow_money) full_borrow_money
+            FROM DWD_DATA.dwd_agr_xd_issue a
+             INNER JOIN  DWD_DATA.dwd_agr_xd_issue_business b  
+              ON  a.IssueId=b.issue_id
+               AND b.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+            WHERE a.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')
+             AND queryfullsuccessdate IS NOT NULL #满标时间非空
+             GROUP BY b.business_id
+           ) h
+     ON a.business_id=h.business_id
+  WHERE a.part_dt=DATE_FORMAT('${pt_day}','%Y-%m-%d')</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>表输出</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DMA_SAL_ACHV_DATA</connection>
+    <schema/>
+    <table>dma_sal_achv_fsd_out_tra_detail</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>stat_dt</column_name>
+        <stream_name>stat_dt</stream_name>
+      </field>
+      <field>
+        <column_name>business_id</column_name>
+        <stream_name>business_id</stream_name>
+      </field>
+      <field>
+        <column_name>area_nm</column_name>
+        <stream_name>area_nm</stream_name>
+      </field>
+      <field>
+        <column_name>branch_nm</column_name>
+        <stream_name>branch_nm</stream_name>
+      </field>
+      <field>
+        <column_name>operator_nm</column_name>
+        <stream_name>operator_nm</stream_name>
+      </field>
+      <field>
+        <column_name>type_nm</column_name>
+        <stream_name>type_nm</stream_name>
+      </field>
+      <field>
+        <column_name>business_type_nm</column_name>
+        <stream_name>business_type_nm</stream_name>
+      </field>
+      <field>
+        <column_name>is_issue</column_name>
+        <stream_name>is_issue</stream_name>
+      </field>
+      <field>
+        <column_name>is_full_issue</column_name>
+        <stream_name>is_full_issue</stream_name>
+      </field>
+      <field>
+        <column_name>customer_nm</column_name>
+        <stream_name>customer_nm</stream_name>
+      </field>
+      <field>
+        <column_name>input_dt</column_name>
+        <stream_name>input_dt</stream_name>
+      </field>
+      <field>
+        <column_name>update_dt</column_name>
+        <stream_name>update_dt</stream_name>
+      </field>
+      <field>
+        <column_name>apply_dt</column_name>
+        <stream_name>apply_dt</stream_name>
+      </field>
+      <field>
+        <column_name>pass_dt</column_name>
+        <stream_name>pass_dt</stream_name>
+      </field>
+      <field>
+        <column_name>sign_dt</column_name>
+        <stream_name>sign_dt</stream_name>
+      </field>
+      <field>
+        <column_name>repay_type_nm</column_name>
+        <stream_name>repay_type_nm</stream_name>
+      </field>
+      <field>
+        <column_name>mtge_type_nm</column_name>
+        <stream_name>mtge_type_nm</stream_name>
+      </field>
+      <field>
+        <column_name>cur_state</column_name>
+        <stream_name>cur_state</stream_name>
+      </field>
+      <field>
+        <column_name>borrow_limit</column_name>
+        <stream_name>borrow_limit</stream_name>
+      </field>
+      <field>
+        <column_name>borrow_amt</column_name>
+        <stream_name>borrow_amt</stream_name>
+      </field>
+      <field>
+        <column_name>new_out_cnt</column_name>
+        <stream_name>new_out_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>new_out_amt</column_name>
+        <stream_name>new_out_amt</stream_name>
+      </field>
+      <field>
+        <column_name>new_apl_cnt</column_name>
+        <stream_name>new_apl_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>new_pass_cnt</column_name>
+        <stream_name>new_pass_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>new_sign_cnt</column_name>
+        <stream_name>new_sign_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>etsn_amt</column_name>
+        <stream_name>etsn_amt</stream_name>
+      </field>
+      <field>
+        <column_name>ode_cnt</column_name>
+        <stream_name>ode_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>ode_prpa</column_name>
+        <stream_name>ode_prpa</stream_name>
+      </field>
+      <field>
+        <column_name>ode_acal</column_name>
+        <stream_name>ode_acal</stream_name>
+      </field>
+      <field>
+        <column_name>ode_plty</column_name>
+        <stream_name>ode_plty</stream_name>
+      </field>
+      <field>
+        <column_name>settle_cnt</column_name>
+        <stream_name>settle_cnt</stream_name>
+      </field>
+      <field>
+        <column_name>bef_settle_prpa</column_name>
+        <stream_name>bef_settle_prpa</stream_name>
+      </field>
+      <field>
+        <column_name>bef_settle_plty</column_name>
+        <stream_name>bef_settle_plty</stream_name>
+      </field>
+      <field>
+        <column_name>nml_settle_prpa</column_name>
+        <stream_name>nml_settle_prpa</stream_name>
+      </field>
+      <field>
+        <column_name>ode_settle_prpa</column_name>
+        <stream_name>ode_settle_prpa</stream_name>
+      </field>
+      <field>
+        <column_name>mon_rate</column_name>
+        <stream_name>mon_rate</stream_name>
+      </field>
+      <field>
+        <column_name>mon_crt_inc</column_name>
+        <stream_name>mon_crt_inc</stream_name>
+      </field>
+      <field>
+        <column_name>one_tm_pt_fee</column_name>
+        <stream_name>one_tm_pt_fee</stream_name>
+      </field>
+      <field>
+        <column_name>mon_lj_pt_fee</column_name>
+        <stream_name>mon_lj_pt_fee</stream_name>
+      </field>
+      <field>
+        <column_name>one_tm_fgsfw_fee</column_name>
+        <stream_name>one_tm_fgsfw_fee</stream_name>
+      </field>
+      <field>
+        <column_name>mon_lj_fgsfw_fee</column_name>
+        <stream_name>mon_lj_fgsfw_fee</stream_name>
+      </field>
+      <field>
+        <column_name>one_tm_db_fee</column_name>
+        <stream_name>one_tm_db_fee</stream_name>
+      </field>
+      <field>
+        <column_name>one_tm_xzzh_fee</column_name>
+        <stream_name>one_tm_xzzh_fee</stream_name>
+      </field>
+      <field>
+        <column_name>pre_sys_serv_fee_rto</column_name>
+        <stream_name>pre_sys_serv_fee_rto</stream_name>
+      </field>
+      <field>
+        <column_name>serv_fee_crt_inc</column_name>
+        <stream_name>serv_fee_crt_inc</stream_name>
+      </field>
+      <field>
+        <column_name>new_pre_serv_fee_inc</column_name>
+        <stream_name>new_pre_serv_fee_inc</stream_name>
+      </field>
+      <field>
+        <column_name>new_one_tm_fee</column_name>
+        <stream_name>new_one_tm_fee</stream_name>
+      </field>
+      <field>
+        <column_name>new_mon_fee</column_name>
+        <stream_name>new_mon_fee</stream_name>
+      </field>
+      <field>
+        <column_name>etsn_pre_serv_fee_inc</column_name>
+        <stream_name>etsn_pre_serv_fee_inc</stream_name>
+      </field>
+      <field>
+        <column_name>etsn_one_tm_fee</column_name>
+        <stream_name>etsn_one_tm_fee</stream_name>
+      </field>
+      <field>
+        <column_name>etsn_mon_fee</column_name>
+        <stream_name>etsn_mon_fee</stream_name>
+      </field>
+      <field>
+        <column_name>pln_settle_tm</column_name>
+        <stream_name>pln_settle_tm</stream_name>
+      </field>
+      <field>
+        <column_name>act_settle_tm</column_name>
+        <stream_name>act_settle_tm</stream_name>
+      </field>
+      <field>
+        <column_name>dw_src_sys</column_name>
+        <stream_name>dw_src_sys</stream_name>
+      </field>
+      <field>
+        <column_name>dw_src_tbl</column_name>
+        <stream_name>dw_src_tbl</stream_name>
+      </field>
+      <field>
+        <column_name>dw_ins_tm</column_name>
+        <stream_name>dw_ins_tm</stream_name>
+      </field>
+      <field>
+        <column_name>dw_upd_tm</column_name>
+        <stream_name>dw_upd_tm</stream_name>
+      </field>
+      <field>
+        <column_name>dw_ins_usr</column_name>
+        <stream_name>dw_ins_usr</stream_name>
+      </field>
+      <field>
+        <column_name>dw_upd_usr</column_name>
+        <stream_name>dw_upd_usr</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

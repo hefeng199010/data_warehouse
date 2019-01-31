@@ -1,0 +1,132 @@
+SELECT
+  a.business_id,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN c.BORROW WHEN a.business_type = '车易贷' THEN b.apply_money WHEN a.business_type = 'T500' OR
+      a.business_type = 'T600' THEN e.extension_amount ELSE d.apply_money END `apply_money`,
+  CASE WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(c.MONTHS, 0) = 1 AND
+      IFNULL(f.repayment_type, '') = '先息后本' THEN 1 WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(c.MONTHS, 0) != 1 AND
+      IFNULL(f.repayment_type, '') = '先息后本' THEN 2 WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(f.repayment_type, '') = '等额本息' THEN 5 WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(f.repayment_type, '') = '等本等息' THEN 4 WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(f.repayment_type, '') = '分期还本付息' THEN 9 WHEN (a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件') AND
+      IFNULL(f.repayment_type, '') = '' THEN NULL WHEN a.business_type = '车易贷' AND
+      IFNULL(b.apply_repayment_type_ID, 0) = 0 THEN NULL WHEN a.business_type = '车易贷' AND
+      IFNULL(b.apply_repayment_type_ID, 0) != 0 THEN b.apply_repayment_type_ID WHEN (a.business_type = 'T500' OR
+      a.business_type = 'T600') AND
+      (e.Rollover_Reimbursement_Means = '1' OR
+      (e.Rollover_Reimbursement_Means = '先息后本' AND
+      IFNULL(e.Renewal_Term, 0) = 1)) THEN 1 WHEN (a.business_type = 'T500' OR
+      a.business_type = 'T600') AND
+      (e.Rollover_Reimbursement_Means = '2' OR
+      (e.Rollover_Reimbursement_Means = '先息后本' AND
+      IFNULL(e.Renewal_Term, 0) != 1)) THEN 2 WHEN (a.business_type = 'T500' OR
+      a.business_type = 'T600') AND
+      (e.Rollover_Reimbursement_Means = '5' OR
+      e.Rollover_Reimbursement_Means = '等额本息') THEN 5 WHEN (a.business_type = 'T500' OR
+      a.business_type = 'T600') AND
+      (e.Rollover_Reimbursement_Means = '等本等息') THEN 4 WHEN (a.business_type = 'T500' OR
+      a.business_type = 'T600') AND
+      (e.Rollover_Reimbursement_Means = '分期还本付息') THEN 9 ELSE d.loan_rate END `apply_repayment_type`,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN c.MONTHS WHEN a.business_type = '车易贷' THEN CAST(b.apply_time_limit AS SIGNED integer) WHEN a.business_type = 'T500' OR
+      a.business_type = 'T600' THEN e.Renewal_Term ELSE d.apply_limit END `apply_limit`,
+  '1' AS apply_limit_unit,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN CAST(c.borrow_rate AS decimal(10, 4)) WHEN a.business_type = '车易贷' THEN CAST(IFNULL(b.repay_rate, '0') AS decimal(10, 4)) WHEN a.business_type = 'T500' OR
+      a.business_type = 'T600' THEN e.Rollover_Rates ELSE d.loan_rate END `apply_rate`,
+  '2' AS apply_rate_unit,
+  a.input_time AS apply_date,
+  NULL AS first_review_money,
+  NULL AS first_review_repayment_type,
+  NULL AS first_review_limit,
+  NULL AS first_review_limit_unit,
+  NULL AS first_review_rate,
+  NULL AS first_review_rate_unit,
+  NULL AS first_review_user_id,
+  NULL AS first_review_user_name,
+  NULL AS first_review_date,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN i.APPROVE_MONEY WHEN a.business_type = '车易贷' THEN CAST(IFNULL(h.final_borrow_money, '0') AS decimal(18, 2)) WHEN a.business_type = 'T500' THEN a.borrow_money WHEN a.business_type = 'T600' THEN j.extension_amount ELSE a.borrow_money END `last_review_money`,
+  CASE WHEN a.repayment_type_id IS NOT NULL THEN a.repayment_type_id ELSE (
+      CASE WHEN (a.business_type = '房速贷标准件' OR
+          a.business_type = '房速贷非标准件') AND
+          (i.APPROVE_WAY = '到期还本息' OR
+          (i.APPROVE_WAY = '先息后本' AND
+          i.APPROVE_MONTH = '1')) THEN 1 WHEN (a.business_type = '房速贷标准件' OR
+          a.business_type = '房速贷非标准件') AND
+          (i.APPROVE_WAY = '每月付息到期还本' OR
+          (i.APPROVE_WAY = '先息后本' AND
+          i.APPROVE_MONTH != '1')) THEN 2 WHEN (a.business_type = '房速贷标准件' OR
+          a.business_type = '房速贷非标准件') AND
+          (i.APPROVE_WAY = '每月等额本息' OR
+          i.APPROVE_WAY = '等额本息') THEN 5 WHEN (a.business_type = '房速贷标准件' OR
+          a.business_type = '房速贷非标准件') AND
+          (i.APPROVE_WAY = '等本等息') THEN 4 WHEN (a.business_type = '房速贷标准件' OR
+          a.business_type = '房速贷非标准件') AND
+          (i.APPROVE_WAY = '分期还本付息') THEN 9 WHEN a.business_type = '车易贷' AND
+          (h.repayment_type = '到期还本息' OR
+          (h.repayment_type = '先息后本' AND
+          h.final_borrow_date_limit = 1)) THEN 1 WHEN a.business_type = '车易贷' AND
+          (h.repayment_type = '每月付息到期还本' OR
+          (h.repayment_type = '先息后本' AND
+          h.final_borrow_date_limit != 1)) THEN 2 WHEN a.business_type = '车易贷' AND
+          (h.repayment_type = '等额本息' OR
+          h.repayment_type = '每月等额本息') THEN 5 WHEN a.business_type = '车易贷' AND
+          (h.repayment_type = '等本等息') THEN 4 WHEN (a.business_type = 'T500' OR
+          a.business_type = 'T600') AND
+          (e.Rollover_Reimbursement_Means = '1' OR
+          (e.Rollover_Reimbursement_Means = '先息后本' AND
+          e.Renewal_Term = 1) OR
+          (e.Rollover_Reimbursement_Means = '分期还本付息' AND
+          e.Renewal_Term = 1)) THEN 1 WHEN (a.business_type = 'T500' OR
+          a.business_type = 'T600') AND
+          (e.Rollover_Reimbursement_Means = '2' OR
+          (e.Rollover_Reimbursement_Means = '先息后本' AND
+          e.Renewal_Term != 1) OR
+          (e.Rollover_Reimbursement_Means = '分期还本付息' AND
+          e.Renewal_Term != 1)) THEN 2 WHEN (a.business_type = 'T500' OR
+          a.business_type = 'T600') AND
+          (e.Rollover_Reimbursement_Means = '5' OR
+          (e.Rollover_Reimbursement_Means = '等额本息')) THEN 5 WHEN (a.business_type = 'T500' OR
+          a.business_type = 'T600') AND
+          (e.Rollover_Reimbursement_Means = '等本等息') THEN 4 ELSE NULL END
+      ) END last_review_repayment_type,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN CAST(IFNULL(i.APPROVE_MONTH, 0) AS SIGNED integer) WHEN a.business_type = '车易贷' THEN CAST(IFNULL(h.final_borrow_date_limit, 0) AS SIGNED integer) WHEN a.business_type = 'T500' THEN a.borrow_limit WHEN a.business_type = 'T600' THEN j.extension_period ELSE a.borrow_limit END last_review_limit,
+  '1' AS last_review_limit_unit,
+  CASE WHEN a.business_type = '房速贷标准件' OR
+      a.business_type = '房速贷非标准件' THEN CAST(IFNULL(i.APPROVE_RATE, 0) AS decimal(10, 4)) WHEN a.business_type = '车易贷' THEN CAST(IFNULL(h.final_repay_rate, 0) AS decimal(10, 4)) WHEN a.business_type = 'T500' THEN e.Rollover_Rates WHEN a.business_type = 'T600' THEN j.extension_rate ELSE a.loan_rate END last_review_rate,
+  '1' AS last_review_rate_unit,
+  NULL AS last_review_user_id,
+  NULL AS last_review_user_name,
+  NULL as last_review_date,
+  NULL AS create_time,
+  NULL AS create_user,
+  NULL AS update_time,
+  NULL as update_user
+FROM tb_business a
+  LEFT JOIN tb_car_business h
+    ON a.business_id = h.car_business_id
+  LEFT JOIN tb_business_approve i
+    ON a.business_id = i.business_id
+  LEFT JOIN tb_business_exhibition_compliance j
+    ON j.extension_id = a.business_id
+  LEFT JOIN tb_car_apply b
+    ON a.business_id = b.car_business_id
+  LEFT JOIN tb_business_base_info c
+    ON a.business_id = c.business_id
+  LEFT JOIN tb_common_apply d
+    ON d.business_id = a.business_id
+  LEFT JOIN tb_car_business_exhibition e
+    ON a.business_id = e.Car_Business_Extension_Id
+  LEFT JOIN tb_fsd_biz_extension f
+    ON f.biz_id = a.business_id
+WHERE a.business_id = 'TDF1012017102704';
